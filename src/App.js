@@ -1,28 +1,33 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styled from 'styled-components';
 
-class App extends Component {
+import { Welcome, AccountPrompt } from './routes';
+import { grey } from './styles/colors';
+
+const AppContainer = styled.div`
+  text-align: center;
+  background-color: ${grey};
+  color: white;
+`;
+
+export default class App extends Component {
+  state = {
+    // screen: Welcome
+    screen: AccountPrompt
+  };
+
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+    return <AppContainer>{this.getComponentFromState()}</AppContainer>;
   }
-}
 
-export default App;
+  getComponentFromState = () => {
+    return <this.state.screen navigate={this.navigate} />;
+  };
+
+  navigate = (screen, navigationParams) => {
+    this.setState({
+      screen,
+      navigationParams: { ...this.state.navigationParams, ...navigationParams }
+    });
+  };
+}
