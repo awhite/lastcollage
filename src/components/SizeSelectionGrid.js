@@ -58,6 +58,7 @@ class GridSquare extends Component {
 }
 
 const SizeSelectionWrapper = styled.table`
+  max-width: 700px;
   width: 100%;
   border-collapse: collapse;
   margin-left: auto;

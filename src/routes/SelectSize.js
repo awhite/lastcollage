@@ -21,7 +21,7 @@ export default class SelectSize extends Component {
 
   render() {
     return (
-      <InputScreen title="Click a square in the grid below to specify the size of the collage you want">
+      <InputScreen title="Click a square in the grid below to specify the collage size">
         <SizeSelectionGrid
           sizeSelected={this.state.sizeSelected}
           onSelectGridSize={this.onSelectGridSize}
