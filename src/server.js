@@ -1,9 +1,14 @@
 const express = require('express');
-const path = require('path');
+
+const PORT = 8000;
 
 const app = express();
 
-app.use(express.static(path.resolve(__dirname, '../dist')));
-app.listen(process.env.PORT, process.env.IP, () => {
-  console.log(`Listening on port ${process.env.PORT}`);
+app.get('/api', (req, res) => {
+  console.log(req.url);
+  res.send('API');
+});
+
+app.listen(PORT, process.env.IP, () => {
+  console.log(`Listening on port ${PORT}`);
 });
