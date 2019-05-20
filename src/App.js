@@ -13,7 +13,8 @@ const AppContainer = styled.div`
 export default class App extends Component {
   state = {
     // screen: Welcome
-    screen: AccountPrompt
+    screen: AccountPrompt,
+    navigationParams: {}
   };
 
   render() {
@@ -21,7 +22,9 @@ export default class App extends Component {
   }
 
   getComponentFromState = () => {
-    return <this.state.screen navigate={this.navigate} />;
+    return (
+      <this.state.screen navigate={this.navigate} navigationParams={this.state.navigationParams} />
+    );
   };
 
   navigate = (screen, navigationParams) => {
