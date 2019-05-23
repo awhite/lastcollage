@@ -23,7 +23,12 @@ export default class EnterUsername extends Component {
   render() {
     return (
       <InputScreen title="Enter your Last.fm username">
-        <MainInput center value={this.state.username} onChange={this.onChangeInput} />
+        <MainInput
+          center
+          placeholder="Username"
+          value={this.state.username}
+          onChange={this.onChangeInput}
+        />
         <KeypressOptionGroup
           options={[{ key: KEY_ENTER, title: 'Next', disabled: this.state.username === '' }]}
           onSelectOption={this.onSelectOption}

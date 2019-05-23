@@ -1,10 +1,10 @@
 export const periods = [
-  { key: '7day', title: '1 Week' },
+  { key: '1week', title: '1 Week' },
   { key: '1month', title: '1 Month' },
   { key: '3month', title: '3 Months' },
   { key: '6month', title: '6 Months' },
-  { key: '12month', title: '1 Year' },
-  { key: 'overall', title: 'Forever' }
+  { key: '1year', title: '1 Year' },
+  { key: 'forever', title: 'Forever' }
 ];
 
 export function getPeriodFromKey(key) {
@@ -12,16 +12,9 @@ export function getPeriodFromKey(key) {
   return periods[index].key;
 }
 
-export const types = ['Albums', 'Artists'];
+export const types = [{ key: 'albums', title: 'Albums' }, { key: 'artists', title: 'Artists' }];
 
 export function getTypeFromKey(key) {
   const index = parseInt(key) - 1;
-  return types[index];
+  return types[index].key;
 }
-
-export const sizes = [
-  { key: '0', title: 'Very Low' },
-  { key: '1', title: 'Low' },
-  { key: '2', title: 'Medium' },
-  { key: '3', title: 'High' }
-];

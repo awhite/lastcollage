@@ -11,7 +11,11 @@ export default class SelectType extends Component {
   render() {
     return (
       <InputScreen title="Albums or Artists?">
-        <KeypressOptionGroup ordered options={types} onSelectOption={this.onSelectOption} />
+        <KeypressOptionGroup
+          ordered
+          options={types.map(({ title }) => title)}
+          onSelectOption={this.onSelectOption}
+        />
       </InputScreen>
     );
   }

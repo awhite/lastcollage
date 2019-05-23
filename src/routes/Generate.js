@@ -7,6 +7,15 @@ export default class Generate extends Component {
   onSelectOption = key => {
     switch (key) {
       case KEY_ENTER:
+        // this.props.navigate(LoadCollage, {
+        //   username: 'aaapwww',
+        //   period: '1week',
+        //   rowNum: '13',
+        //   colNum: '5',
+        //   type: 'albums',
+        //   showName: false,
+        //   hideMissing: true
+        // });
         this.props.navigate(LoadCollage);
         break;
       default:

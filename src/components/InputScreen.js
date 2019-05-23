@@ -7,7 +7,7 @@ export default function({ title, children }) {
       <PageTitle>
         <Red>Lastcollage</Red>
       </PageTitle>
-      <MainText>{title}</MainText>
+      {title && <MainText>{title}</MainText>}
       {children}
     </div>
   );
