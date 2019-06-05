@@ -90,7 +90,7 @@ class SizeSelectionGrid extends Component {
     return (
       <FlexCol>
         <MainText>{this.printSize()}</MainText>
-        <SizeSelectionWrapper onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
+        <SizeSelectionWrapper onMouseOver={this.onMouseOver} onMouseLeave={this.onMouseLeave}>
           <tbody>
             {this.state.cells.map((row, rowNum) => (
               <tr key={rowNum}>
@@ -137,7 +137,7 @@ class SizeSelectionGrid extends Component {
     return hoverSize;
   };
 
-  onMouseEnter = () => this.setState({ mouseOn: true });
+  onMouseOver = () => this.setState({ mouseOn: true });
 
   onMouseLeave = () => this.setState({ mouseOn: false });
 
