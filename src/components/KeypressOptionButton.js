@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { red, dimRed } from '../styles/colors';
-import { CtaButton } from './Buttons';
-import { theme } from '../styles';
+import Button from './Button';
 
 const Option = styled.div`
   margin-bottom: 20px;
@@ -11,13 +10,11 @@ const Option = styled.div`
   align-items: center;
 `;
 
-const OptionButtonBase = styled(CtaButton)`
+const OptionButtonBase = styled(Button)`
   margin-bottom: 0;
 `;
 
-const OptionButton = props => (
-  <OptionButtonBase {...props} focusRipple={true} variant="contained" />
-);
+const OptionButton = props => <OptionButtonBase {...props} variant="contained" />;
 
 const Letter = styled.div`
   position: relative;
@@ -126,7 +123,10 @@ export default class KeypressOptionButton extends Component {
           onMouseEnter={this.onMouseEnter}
           onMouseLeave={this.onMouseLeave}
           onClick={this.onClick}
-          action={actions => (this.focusVisible = actions.focusVisible)}
+          action={actions => {
+            console.log(actions);
+            return (this.focusVisible = actions.focusVisible);
+          }}
           disabled={this.props.disabled}
         >
           <span>{this.props.title}</span>

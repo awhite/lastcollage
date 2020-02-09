@@ -1,4 +1,4 @@
-export * from './Buttons';
+export { default as Button } from './Button';
 export { default as KeypressOptionGroup } from './KeypressOptionGroup';
 export { default as KeypressOptionButton } from './KeypressOptionButton';
 export { default as FlexCol } from './FlexCol';

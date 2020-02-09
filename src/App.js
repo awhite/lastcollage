@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 import { Welcome, AccountPrompt } from './routes';
+import Test from './routes/Test';
 import { grey } from './styles/colors';
 
 const AppContainer = styled.div`
@@ -12,8 +13,9 @@ const AppContainer = styled.div`
 
 export default class App extends Component {
   state = {
-    // screen: Welcome
-    screen: AccountPrompt,
+    screen: Welcome,
+    // screen: AccountPrompt,
+    // screen: Test,
     navigationParams: {}
   };
 

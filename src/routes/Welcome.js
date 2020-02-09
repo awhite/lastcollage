@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { PageTitle, MainText, Red, Link, FlexCol, CtaButton } from '../components';
+import { PageTitle, MainText, Red, Link, FlexCol, Button } from '../components';
 import { AccountPrompt } from '../routes';
 
 export default class Welcome extends Component {
@@ -17,8 +17,8 @@ export default class Welcome extends Component {
           Generate a collage from your <Link href="https://www.last.fm/">Last.fm</Link> scrobbles
         </MainText>
         <FlexCol>
-          <CtaButton onClick={this.getStarted}>Get started</CtaButton>
-          <CtaButton>Sign in</CtaButton>
+          <Button onClick={this.getStarted}>Get started</Button>
+          <Button>Sign in</Button>
         </FlexCol>
       </div>
     );

@@ -2,6 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
 import 'bootstrap/dist/css/bootstrap-grid.min.css';
-import AppContainer from './AppContainer';
+import App from './App';
 
-ReactDOM.render(<AppContainer />, document.querySelector('#root'));
+ReactDOM.render(<App />, document.querySelector('#root'));
