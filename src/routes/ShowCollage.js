@@ -12,8 +12,15 @@ const ShowCollage = ({ navigationParams }) => {
     return `collage_${type}_${rowNum}x${colNum}.png`;
   };
 
-  const { imgUrl } = navigationParams;
+  const { imgUrl, err } = navigationParams;
   const filename = generateFilename();
+
+  switch (err.response.status) {
+    case 400:
+      return 'There was an error with your request. Please reload the page and try again';
+    default:
+      break;
+  }
   return (
     <InputScreen>
       <FlexCol>

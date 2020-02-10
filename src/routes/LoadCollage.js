@@ -10,15 +10,23 @@ const LoadCollage = ({ navigate, navigationParams }) => {
     navigate(ShowCollage, { imgUrl });
   };
 
+  const onCollageLoadError = err => {
+    navigate(ShowCollage, { err });
+  }
+
   useEffect(() => {
     const call = async () => {
-      const { data: imgUrl } = await axios.get(`${BASE_URL}/collage`, {
-        params: {
-          ...navigationParams
-        },
-        responseType: 'text'
-      });
-      onCollageLoaded(imgUrl);
+      try {
+        const { data: imgUrl } = await axios.get(`${BASE_URL}/collage`, {
+          params: {
+            ...navigationParams
+          },
+          responseType: 'text'
+        });
+        onCollageLoaded(imgUrl);
+      } catch (err) {
+        onCollageLoadError(err);
+      }
     };
 
     call();
