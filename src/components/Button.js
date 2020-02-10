@@ -2,7 +2,7 @@ import React from 'react';
 import { red, dimRed, lightRed, darkRed } from '../styles';
 import styled from 'styled-components';
 
-export default styled(({ outlined, ...otherProps }) => <button {...otherProps} />)`
+export default styled(({ outlined, disabled, ...otherProps }) => <button disabled={disabled} {...otherProps} />)`
   text-transform: none;
   font-size: 24pt;
   width: 280px;
@@ -56,5 +56,11 @@ export default styled(({ outlined, ...otherProps }) => <button {...otherProps} /
 
   :focus {
     outline: 0;
+  }
+
+  :disabled {
+    background-color: #888;
+    cursor: default;
+    box-shadow: none;
   }
 `;

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { InputScreen, FlexCol } from '../components';
 import styled from 'styled-components';
 
@@ -6,23 +6,23 @@ const CollageImg = styled.img`
   width: 100%;
 `;
 
-export default class ShowCollage extends Component {
-  render() {
-    const { imgUrl } = this.props.navigationParams;
-    const fileName = this.generateFileName();
-    return (
-      <InputScreen>
-        <FlexCol>
-          <a href={imgUrl} download={fileName}>
-            <CollageImg crossOrigin="anonymous" src={imgUrl} className="img-responsive" />
-          </a>
-        </FlexCol>
-      </InputScreen>
-    );
-  }
-
-  generateFileName() {
-    const { type, rowNum, colNum } = this.props.navigationParams;
+const ShowCollage = ({ navigationParams }) => {
+  const generateFilename = () => {
+    const { type, rowNum, colNum } = navigationParams;
     return `collage_${type}_${rowNum}x${colNum}.png`;
-  }
-}
+  };
+
+  const { imgUrl } = navigationParams;
+  const filename = generateFilename();
+  return (
+    <InputScreen>
+      <FlexCol>
+        <a href={imgUrl} download={filename}>
+          <CollageImg crossOrigin="anonymous" src={imgUrl} className="img-responsive" />
+        </a>
+      </FlexCol>
+    </InputScreen>
+  );
+};
+
+export default ShowCollage;

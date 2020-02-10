@@ -1,30 +1,28 @@
-import React, { Component } from 'react';
-import { InputScreen, KeypressOptionGroup } from '../components';
+import React from 'react';
+import { InputScreen, Button } from '../components';
 import { KEY_YES, KEY_NO } from '../util/constants';
 import { EnterUsername, CreateAccount } from '../routes';
 
-export default class AccountPrompt extends Component {
-  onSelectOption = key => {
+const AccountPrompt = ({ navigate }) => {
+  const onSelectOption = key => {
     switch (key) {
       case KEY_YES:
-        this.props.navigate(EnterUsername);
+        navigate(EnterUsername);
         break;
       case KEY_NO:
-        this.props.navigate(CreateAccount);
+        navigate(CreateAccount);
         break;
       default:
         throw new Error(`Unsupported option ${key}`);
     }
   };
 
-  render() {
-    return (
-      <InputScreen title="Do you have a Last.fm account?">
-        <KeypressOptionGroup
-          options={[{ key: KEY_YES, title: 'Yes' }, { key: KEY_NO, title: 'No' }]}
-          onSelectOption={this.onSelectOption}
-        />
-      </InputScreen>
-    );
-  }
-}
+  return (
+    <InputScreen title="Do you have a Last.fm account?" center>
+      <Button onClick={() => onSelectOption(KEY_YES)}>Yes</Button>
+      <Button onClick={() => onSelectOption(KEY_NO)}>No</Button>
+    </InputScreen>
+  );
+};
+
+export default AccountPrompt;

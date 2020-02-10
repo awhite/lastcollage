@@ -1,32 +1,35 @@
-import React, { Component } from 'react';
-import { InputScreen, CollageLoadingBar } from '../components';
+import React, { useEffect } from 'react';
+import { InputScreen } from '../components';
 import { ShowCollage } from '../routes';
 import axios from 'axios';
 import { BASE_URL } from '../util/constants';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
-export default class LoadCollage extends Component {
-  onCollageLoaded = imgUrl => {
-    this.props.navigate(ShowCollage, { imgUrl });
+const LoadCollage = ({ navigate, navigationParams }) => {
+  const onCollageLoaded = imgUrl => {
+    navigate(ShowCollage, { imgUrl });
   };
 
-  componentDidMount() {
-    axios
-      .get(`${BASE_URL}/collage`, {
+  useEffect(() => {
+    const call = async () => {
+      const { data: imgUrl } = await axios.get(`${BASE_URL}/collage`, {
         params: {
-          ...this.props.navigationParams
+          ...navigationParams
         },
         responseType: 'text'
-      })
-      .then(({ data: imgUrl }) => {
-        this.onCollageLoaded(imgUrl);
       });
-  }
+      onCollageLoaded(imgUrl);
+    };
 
-  render() {
-    return (
-      <InputScreen title="Generating your collage...">
-        {/* <CollageLoadingBar onLoad={this.onCollageLoaded} /> */}
-      </InputScreen>
-    );
-  }
-}
+    call();
+  });
+
+  return (
+    <InputScreen title="Generating your collage..." center>
+      {/* <CollageLoadingBar onLoad={this.onCollageLoaded} /> */}
+      <CircularProgress />
+    </InputScreen>
+  );
+};
+
+export default LoadCollage;
