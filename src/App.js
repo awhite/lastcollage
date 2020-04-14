@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import { Welcome, Generate } from './routes';
-import Test from './routes/Test';
+import navigationOrder from './routes';
 import { grey } from './styles/colors';
 
 const AppContainer = styled.div`
@@ -11,28 +10,38 @@ const AppContainer = styled.div`
   color: white;
 `;
 
-export default class App extends Component {
-  state = {
-    // screen: Welcome,
-    screen: Generate,
-    // screen: Test,
-    navigationParams: {}
-  };
+const App = () => {
+  const [navigationParams, setNavigationParams] = useState({});
+  const [navigationIndex, setNavigationIndex] = useState(0);
 
-  render() {
-    return <AppContainer>{this.getComponentFromState()}</AppContainer>;
+  const addNavigationParams = params => setNavigationParams({ ...navigationParams, ...params });
+
+  const navigate = (delta, navigationParams = {}) => {
+    const newNavIndex = navigationIndex + delta;
+    if (newNavIndex >= navigationOrder.length || newNavIndex < 0) throw new Error('Navigation screen index out of bounds');
+    setNavigationIndex(newNavIndex);
+    addNavigationParams(navigationParams);
   }
 
-  getComponentFromState = () => {
-    return (
-      <this.state.screen navigate={this.navigate} navigationParams={this.state.navigationParams} />
-    );
-  };
+  const navigateNext = navigationParams => navigate(1, navigationParams);
 
-  navigate = (screen, navigationParams) => {
-    this.setState({
-      screen,
-      navigationParams: { ...this.state.navigationParams, ...navigationParams }
-    });
-  };
+  const navigateBack = navigationParams => navigate(-1, navigationParams);
+
+  const navigation = {
+    navigate,
+    navigateNext,
+    navigateBack,
+    navigationParams,
+    clearNavigationParams: () => setNavigationParams({}),
+  }
+
+  const Screen = navigationOrder[navigationIndex];
+
+  return (
+    <AppContainer>
+      <Screen navigation={navigation} />
+    </AppContainer>
+  );
 }
+
+export default App;

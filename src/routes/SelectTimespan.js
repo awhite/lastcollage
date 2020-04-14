@@ -1,11 +1,11 @@
 import React from 'react';
+
 import { InputScreen, Button } from '../components';
-import { SelectSize } from '../routes';
 import { periods, getPeriodFromKey } from '../lastfm';
 
-const SelectTimespan = ({ navigate }) => {
+const SelectTimespan = ({ navigation: { navigateNext } }) => {
   const onSelectOption = key => {
-    navigate(SelectSize, { period: getPeriodFromKey(key) });
+    navigateNext({ period: getPeriodFromKey(key) });
   };
 
   return (

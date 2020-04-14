@@ -1,11 +1,12 @@
 import React from 'react';
-import { PageTitle, MainText, Red, Link, FlexCol, Button } from '../components';
-import { AccountPrompt } from '../routes';
 
-const Welcome = ({ navigate }) => {
+import { PageTitle, MainText, Red, Link, FlexCol, Button } from '../components';
+
+const Welcome = ({ navigation: { navigateNext, clearNavigationParams } }) => {
   const getStarted = () => {
-    navigate(AccountPrompt);
-  }
+    clearNavigationParams();
+    navigateNext();
+  };
 
   return (
     <div className="container">
@@ -20,7 +21,7 @@ const Welcome = ({ navigate }) => {
         {/* <Button>Sign in</Button> */}
       </FlexCol>
     </div>
-  )
-}
+  );
+};
 
 export default Welcome;

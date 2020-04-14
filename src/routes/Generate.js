@@ -1,9 +1,8 @@
 import React from 'react';
 import { InputScreen, Button } from '../components';
 import { KEY_ENTER } from '../util/constants';
-import { LoadCollage } from '../routes';
 
-const Generate = ({ navigate }) => {
+const Generate = ({ navigation: { navigateNext } }) => {
   const onSelectOption = key => {
     switch (key) {
       case KEY_ENTER:
@@ -16,7 +15,7 @@ const Generate = ({ navigate }) => {
         //   showName: false,
         //   hideMissing: true
         // });
-        navigate(LoadCollage);
+        navigateNext();
         break;
       default:
         throw new Error(`Unsupported option ${key}`);
@@ -28,6 +27,6 @@ const Generate = ({ navigate }) => {
       <Button onClick={() => onSelectOption(KEY_ENTER)}>Generate</Button>
     </InputScreen>
   );
-}
+};
 
 export default Generate;

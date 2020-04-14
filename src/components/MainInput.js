@@ -12,5 +12,6 @@ export default styled(({ center, ...otherProps }) => (
     min-width: 280px;
     max-width: 400px;
     ${props => (props.center ? 'text-align: center;' : '')};
+    color: white;
   }
 `;

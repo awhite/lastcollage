@@ -17,17 +17,17 @@ const InputScreen = ({ title, center, children }) => (
     {title && <MainText>{title}</MainText>}
     <Container center={center}>{children}</Container>
   </div>
-)
+);
 
 InputScreen.propTypes = {
   title: PropTypes.string,
   center: PropTypes.bool,
-  children: PropTypes.node
-}
+  children: PropTypes.node,
+};
 
 InputScreen.defaultProps = {
   title: '',
   center: false,
 };
 
-export default InputScreen
+export default InputScreen;

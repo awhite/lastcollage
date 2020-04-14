@@ -1,16 +1,15 @@
 import React from 'react';
 import { InputScreen, Button } from '../components';
 import { KEY_YES, KEY_NO } from '../util/constants';
-import { EnterUsername, CreateAccount } from '../routes';
 
-const AccountPrompt = ({ navigate }) => {
+const AccountPrompt = ({ navigation: { navigate } }) => {
   const onSelectOption = key => {
     switch (key) {
       case KEY_YES:
-        navigate(EnterUsername);
+        navigate(2);
         break;
       case KEY_NO:
-        navigate(CreateAccount);
+        navigate(1);
         break;
       default:
         throw new Error(`Unsupported option ${key}`);

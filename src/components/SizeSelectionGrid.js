@@ -19,7 +19,7 @@ const GridSquareBase = styled.td`
 
 class GridSquare extends Component {
   state = {
-    mouseOn: false
+    mouseOn: false,
   };
 
   render() {
@@ -74,7 +74,7 @@ const Grey = styled.span`
 class SizeSelectionGrid extends Component {
   static defaultProps = {
     rowNum: 14,
-    colNum: 14
+    colNum: 14,
   };
 
   state = {
@@ -83,7 +83,7 @@ class SizeSelectionGrid extends Component {
     mouseX: 0,
     mouseY: 0,
     bottomRight: { row: -1, col: -1 },
-    hoverBottomRight: { row: -1, col: -1 }
+    hoverBottomRight: { row: -1, col: -1 },
   };
 
   render() {
@@ -161,9 +161,9 @@ class SizeSelectionGrid extends Component {
             return SELECTED;
           }
           return rowNum <= newRow && colNum <= newCol ? HOVER : NOT_SELECTED;
-        })
+        }),
       ),
-      hoverBottomRight: { row: newRow, col: newCol }
+      hoverBottomRight: { row: newRow, col: newCol },
     });
   };
 
@@ -171,10 +171,10 @@ class SizeSelectionGrid extends Component {
     this.setState({
       cells: this.state.cells.map((row, rowNum) =>
         row.map((selected, colNum) =>
-          rowNum <= newRow && colNum <= newCol ? SELECTED : NOT_SELECTED
-        )
+          rowNum <= newRow && colNum <= newCol ? SELECTED : NOT_SELECTED,
+        ),
       ),
-      bottomRight: { row: newRow, col: newCol }
+      bottomRight: { row: newRow, col: newCol },
     });
     this.props.onSelectGridSize(newRow + 1, newCol + 1);
   };

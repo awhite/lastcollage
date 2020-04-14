@@ -1,35 +1,33 @@
 import React, { useEffect } from 'react';
-import { InputScreen } from '../components';
-import { ShowCollage } from '../routes';
 import axios from 'axios';
+
+import { InputScreen } from '../components';
 import { BASE_URL } from '../util/constants';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-const LoadCollage = ({ navigate, navigationParams }) => {
+const LoadCollage = ({ navigation: { navigateNext, navigationParams } }) => {
   const onCollageLoaded = imgUrl => {
-    navigate(ShowCollage, { imgUrl });
+    navigateNext({ imgUrl });
   };
 
   const onCollageLoadError = err => {
-    navigate(ShowCollage, { err });
-  }
+    navigateNext({ err });
+  };
 
   useEffect(() => {
-    const call = async () => {
+    (async () => {
       try {
         const { data: imgUrl } = await axios.get(`${BASE_URL}/collage`, {
           params: {
-            ...navigationParams
+            ...navigationParams,
           },
-          responseType: 'text'
+          responseType: 'text',
         });
         onCollageLoaded(imgUrl);
       } catch (err) {
         onCollageLoadError(err);
       }
-    };
-
-    call();
+    })();
   });
 
   return (

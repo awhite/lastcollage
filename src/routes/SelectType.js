@@ -1,11 +1,11 @@
 import React from 'react';
+
 import { InputScreen, Button } from '../components';
-import { Generate } from '../routes';
 import { types, getTypeFromKey } from '../lastfm';
 
-const SelectType = ({ navigate }) => {
+const SelectType = ({ navigation: { navigateNext } }) => {
   const onSelectOption = key => {
-    navigate(Generate, { type: getTypeFromKey(key) });
+    navigateNext({ type: getTypeFromKey(key) });
   };
 
   return (

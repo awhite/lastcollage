@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
+
 import { InputScreen, MainInput, Button } from '../components';
 import { KEY_ENTER } from '../util/constants';
-import { SelectTimespan } from '../routes';
 
-const EnterUsername = ({ navigate }) => {
+const EnterUsername = ({ navigation: { navigateNext } }) => {
   const [username, setUsername] = useState('');
 
   const onSelectOption = key => {
     switch (key) {
       case KEY_ENTER:
-        navigate(SelectTimespan, { username });
+        navigateNext({ username });
         break;
       default:
         throw new Error(`Unsupported option ${key}`);

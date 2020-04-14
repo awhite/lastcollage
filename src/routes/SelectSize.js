@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import styled from 'styled-components';
+
 import { InputScreen, Button, SizeSelectionGrid } from '../components';
-import { SelectType } from '../routes';
 import { KEY_ENTER } from '../util/constants';
 
 const Container = styled.div`
@@ -10,7 +10,7 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const SelectSize = ({ navigate }) => {
+const SelectSize = ({ navigation: { navigateNext } }) => {
   const reducer = (state, action) => {
     switch (action.type) {
       case 'selectGridSize':
@@ -24,7 +24,7 @@ const SelectSize = ({ navigate }) => {
       default:
         return state;
     }
-  }
+  };
 
   const [state, dispatch] = useReducer(reducer, {
     sizeSelected: false,
@@ -34,7 +34,7 @@ const SelectSize = ({ navigate }) => {
 
   const onSelectOption = key => {
     const { rowNum, colNum } = state;
-    navigate(SelectType, { rowNum, colNum });
+    navigateNext({ rowNum, colNum });
   };
 
   const onSelectGridSize = (rowNum, colNum) => dispatch({
@@ -55,7 +55,7 @@ const SelectSize = ({ navigate }) => {
         <Button onClick={() => onSelectOption(KEY_ENTER)} disabled={!state.sizeSelected}>Next</Button>
       </Container>
     </InputScreen>
-  )
-}
+  );
+};
 
 export default SelectSize;

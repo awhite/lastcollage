@@ -22,8 +22,8 @@ const Letter = styled.div`
     props.active
       ? 'animation: fadeIn 300ms forwards;'
       : props.haveHovered
-      ? `animation: ${props.hover ? 'fadeIn' : 'fadeOut'} 300ms forwards`
-      : 'border-color: grey'};
+        ? `animation: ${props.hover ? 'fadeIn' : 'fadeOut'} 300ms forwards`
+        : 'border-color: grey'};
   @keyframes fadeIn {
     0% {
       border-color: grey;
@@ -72,7 +72,7 @@ export default class KeypressOptionButton extends Component {
   state = {
     hover: false,
     haveHovered: false,
-    active: false
+    active: false,
   };
 
   onMouseEnter = e => {
