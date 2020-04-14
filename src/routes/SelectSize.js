@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import styled from 'styled-components';
 
-import { InputScreen, Button, SizeSelectionGrid } from '../components';
+import { InputScreen, Button, SizeSelectionGrid, ButtonContainer, BackButton } from '../components';
 import { KEY_ENTER } from '../util/constants';
 
 const Container = styled.div`
@@ -10,7 +10,7 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const SelectSize = ({ navigation: { navigateNext } }) => {
+const SelectSize = ({ navigation: { navigateNext, navigateBack } }) => {
   const reducer = (state, action) => {
     switch (action.type) {
       case 'selectGridSize':
@@ -52,7 +52,10 @@ const SelectSize = ({ navigation: { navigateNext } }) => {
         onSelectGridSize={onSelectGridSize}
       />
       <Container>
-        <Button onClick={() => onSelectOption(KEY_ENTER)} disabled={!state.sizeSelected}>Next</Button>
+        <ButtonContainer>
+          <BackButton onClick={navigateBack} />
+          <Button onClick={() => onSelectOption(KEY_ENTER)} disabled={!state.sizeSelected}>Next</Button>
+        </ButtonContainer>
       </Container>
     </InputScreen>
   );

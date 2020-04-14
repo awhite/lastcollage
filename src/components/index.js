@@ -1,4 +1,7 @@
 export { default as Button } from './Button';
+export { default as BackButton } from './BackButton';
+export { default as ButtonContainer } from './ButtonContainer';
+export { default as Error } from './Error';
 export { default as KeypressOptionGroup } from './KeypressOptionGroup';
 export { default as KeypressOptionButton } from './KeypressOptionButton';
 export { default as FlexCol } from './FlexCol';

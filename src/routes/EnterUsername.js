@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
-import { InputScreen, MainInput, Button } from '../components';
+import { InputScreen, MainInput, Button, BackButton, ButtonContainer } from '../components';
 import { KEY_ENTER } from '../util/constants';
 
-const EnterUsername = ({ navigation: { navigateNext } }) => {
+const EnterUsername = ({ navigation: { navigateNext, navigateBack } }) => {
   const [username, setUsername] = useState('');
 
   const onSelectOption = key => {
@@ -26,12 +26,15 @@ const EnterUsername = ({ navigation: { navigateNext } }) => {
         value={username}
         onChange={onChangeInput}
       />
-      <Button
-        onClick={() => onSelectOption(KEY_ENTER)}
-        disabled={username === ''}
-      >
-        Next
-      </Button>
+      <ButtonContainer>
+        <BackButton onClick={navigateBack} />
+        <Button
+          onClick={() => onSelectOption(KEY_ENTER)}
+          disabled={username === ''}
+        >
+          Next
+        </Button>
+      </ButtonContainer>
     </InputScreen>
   );
 };

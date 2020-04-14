@@ -10,7 +10,7 @@ const Container = styled.div`
 `;
 
 const InputScreen = ({ title, center, children }) => (
-  <div className="container">
+  <div>
     <PageTitle>
       <Red>Lastcollage</Red>
     </PageTitle>
