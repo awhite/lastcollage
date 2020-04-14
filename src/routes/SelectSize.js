@@ -2,7 +2,8 @@ import React, { useReducer } from 'react';
 import styled from 'styled-components';
 
 import { InputScreen, Button, SizeSelectionGrid, ButtonContainer, BackButton } from '../components';
-import { KEY_ENTER } from '../util/constants';
+import { KEYCODE_ENTER } from '../util/constants';
+import { useKeyButton } from 'hooks';
 
 const Container = styled.div`
   display: flex;
@@ -32,10 +33,15 @@ const SelectSize = ({ navigation: { navigateNext, navigateBack } }) => {
     colNum: -1,
   });
 
-  const onSelectOption = key => {
+  const isFormFilled = () => state.sizeSelected;
+
+  const onSelectOption = () => {
+    if (!isFormFilled()) return;
     const { rowNum, colNum } = state;
     navigateNext({ rowNum, colNum });
   };
+
+  useKeyButton(KEYCODE_ENTER, onSelectOption);
 
   const onSelectGridSize = (rowNum, colNum) => dispatch({
     type: 'selectGridSize',
@@ -54,7 +60,7 @@ const SelectSize = ({ navigation: { navigateNext, navigateBack } }) => {
       <Container>
         <ButtonContainer>
           <BackButton onClick={navigateBack} />
-          <Button onClick={() => onSelectOption(KEY_ENTER)} disabled={!state.sizeSelected}>Next</Button>
+          <Button onClick={onSelectOption} disabled={!isFormFilled()}>Next</Button>
         </ButtonContainer>
       </Container>
     </InputScreen>

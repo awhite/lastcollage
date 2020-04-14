@@ -11,8 +11,6 @@ import ShowCollage from './ShowCollage';
 
 export default [
   Welcome,
-  AccountPrompt,
-  CreateAccount,
   EnterUsername,
   SelectTimespan,
   SelectSize,

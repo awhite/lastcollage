@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
 
 import { InputScreen, MainInput, Button, BackButton, ButtonContainer } from '../components';
-import { KEY_ENTER } from '../util/constants';
+import { KEYCODE_ENTER } from '../util/constants';
+import { useKeyButton } from 'hooks';
 
 const EnterUsername = ({ navigation: { navigateNext, navigateBack } }) => {
   const [username, setUsername] = useState('');
+  const isFormFilled = () => username.trim() !== '';
 
-  const onSelectOption = key => {
-    switch (key) {
-      case KEY_ENTER:
-        navigateNext({ username });
-        break;
-      default:
-        throw new Error(`Unsupported option ${key}`);
-    }
-  };
+  const onSelectOption = () => {
+    if (!isFormFilled()) return;
+    navigateNext({ username });
+  }
+
+  useKeyButton(KEYCODE_ENTER, onSelectOption);
 
   const onChangeInput = ({ target: { value } }) => setUsername(value);
 
@@ -29,8 +28,8 @@ const EnterUsername = ({ navigation: { navigateNext, navigateBack } }) => {
       <ButtonContainer>
         <BackButton onClick={navigateBack} />
         <Button
-          onClick={() => onSelectOption(KEY_ENTER)}
-          disabled={username === ''}
+          onClick={onSelectOption}
+          disabled={!isFormFilled()}
         >
           Next
         </Button>
