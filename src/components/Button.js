@@ -6,7 +6,6 @@ export default styled(({ outlined, disabled, ...otherProps }) => <button disable
   text-transform: none;
   font-size: 24pt;
   width: 280px;
-  margin-bottom: 20px;
   padding: 16px 0;
   cursor: pointer;
 

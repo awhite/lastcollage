@@ -58,9 +58,9 @@ const SelectSize = ({ navigation: { navigateNext, navigateBack } }) => {
         onSelectGridSize={onSelectGridSize}
       />
       <Container>
-        <ButtonContainer>
-          <BackButton onClick={navigateBack} />
+        <ButtonContainer row>
           <Button onClick={onSelectOption} disabled={!isFormFilled()}>Next</Button>
+          <BackButton onClick={navigateBack} />
         </ButtonContainer>
       </Container>
     </InputScreen>

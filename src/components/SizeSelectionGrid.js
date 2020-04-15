@@ -61,14 +61,16 @@ const SizeSelectionWrapper = styled.table`
   max-width: 700px;
   width: 100%;
   border-collapse: collapse;
-  margin-left: auto;
-  margin-right: auto;
   margin-bottom: 48px;
   cursor: pointer;
 `;
 
 const Grey = styled.span`
   color: grey;
+`;
+
+const StyledCol = styled(FlexCol)`
+  margin: 0 16px;
 `;
 
 class SizeSelectionGrid extends Component {
@@ -88,7 +90,7 @@ class SizeSelectionGrid extends Component {
 
   render() {
     return (
-      <FlexCol>
+      <StyledCol>
         <MainText>{this.printSize()}</MainText>
         <SizeSelectionWrapper onMouseOver={this.onMouseOver} onMouseLeave={this.onMouseLeave}>
           <tbody>
@@ -107,7 +109,7 @@ class SizeSelectionGrid extends Component {
             ))}
           </tbody>
         </SizeSelectionWrapper>
-      </FlexCol>
+      </StyledCol>
     );
   }
 

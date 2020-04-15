@@ -1,7 +1,6 @@
 import React from 'react';
-import { InputScreen, Button } from '../components';
+import { InputScreen, Button, ButtonContainer, BackButton } from '../components';
 import { KEY_ENTER } from '../util/constants';
-import { ColBackButton } from 'components/BackButton';
 
 const Generate = ({ navigation: { navigateNext, navigateBack } }) => {
   const onSelectOption = key => {
@@ -25,8 +24,10 @@ const Generate = ({ navigation: { navigateNext, navigateBack } }) => {
 
   return (
     <InputScreen title="Click the button to generate your collage" center>
-      <Button onClick={() => onSelectOption(KEY_ENTER)}>Generate</Button>
-      <ColBackButton onClick={navigateBack} />
+      <ButtonContainer>
+        <Button onClick={() => onSelectOption(KEY_ENTER)}>Generate</Button>
+        <BackButton onClick={navigateBack} />
+      </ButtonContainer>
     </InputScreen>
   );
 };

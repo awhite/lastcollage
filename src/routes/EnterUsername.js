@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { InputScreen, MainInput, Button, BackButton, ButtonContainer } from '../components';
+import { InputScreen, MainInput, Button, ButtonContainer } from '../components';
 import { KEYCODE_ENTER } from '../util/constants';
 import { useKeyButton } from 'hooks';
 
@@ -26,7 +26,6 @@ const EnterUsername = ({ navigation: { navigateNext, navigateBack } }) => {
         onChange={onChangeInput}
       />
       <ButtonContainer>
-        <BackButton onClick={navigateBack} />
         <Button
           onClick={onSelectOption}
           disabled={!isFormFilled()}
