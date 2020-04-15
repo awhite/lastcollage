@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { red, dimRed } from '../styles/colors';
+import { red } from '../styles/colors';
 import Button from './Button';
 
 const Option = styled.div`

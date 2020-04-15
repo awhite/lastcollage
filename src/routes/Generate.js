@@ -7,16 +7,16 @@ const Generate = ({ navigation: { navigateNext, navigateBack } }) => {
   const onSelectOption = key => {
     switch (key) {
       case KEY_ENTER:
-        navigateNext({
-          username: 'aaapwww',
-          period: '1week',
-          rowNum: '13',
-          colNum: '5',
-          type: 'albums',
-          showName: false,
-          hideMissing: true
-        });
-        // navigateNext();
+        // navigateNext({
+        //   username: 'aaapwww',
+        //   period: '1week',
+        //   rowNum: '13',
+        //   colNum: '5',
+        //   type: 'albums',
+        //   showName: false,
+        //   hideMissing: true
+        // });
+        navigateNext({ type: 'albums' });
         break;
       default:
         throw new Error(`Unsupported option ${key}`);

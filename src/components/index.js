@@ -12,3 +12,4 @@ export { default as PageTitle } from './PageTitle';
 export { default as Red } from './Red';
 export { default as InputScreen } from './InputScreen';
 export { default as SizeSelectionGrid } from './SizeSelectionGrid';
+export { default as ResultDescription } from './ResultDescription';

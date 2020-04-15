@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { dimRed } from 'styles';
 import { Button } from 'components';
 
 // https://codepen.io/sdthornton/pen/wBZdXq

@@ -1,40 +1,37 @@
 import React from 'react';
 
-import { InputScreen, FlexCol, Error } from '../components';
+import { InputScreen, FlexCol, Error, ResultDescription, Button } from '../components';
 import styled from 'styled-components';
 
 const CollageImg = styled.img`
   width: 100%;
 `;
 
+const StyledButton = styled(Button)`
+  margin-top: 64px;
+`;
+
 const ShowCollage = ({ navigation: { navigationParams, resetNavigation } }) => {
   const generateFilename = () => {
     const { type, rowNum, colNum } = navigationParams;
-    return `collage_${type}_${rowNum}x${colNum}.png`;
+    return `collage_${type}_${colNum}x${rowNum}.png`;
   };
 
   const { imgUrl, err } = navigationParams;
   const filename = generateFilename();
 
-  console.log(imgUrl);
-
   if (err) {
     return <Error error={err} startOver={resetNavigation} />
-    // if (!err.response) return err.message;
-    // switch (err.response.status) {
-    //   case 400:
-    //     return 'There was an error with your request. Please reload the page and try again.';
-    //   default:
-    //     return 'Something went wrong. Please try again.';
-    // }
   }
 
   return (
     <InputScreen>
       <FlexCol>
+        <ResultDescription navigationParams={navigationParams} />
         <a href={imgUrl} download={filename}>
           <CollageImg crossOrigin="anonymous" src={imgUrl} className="img-responsive" />
         </a>
+        <StyledButton onClick={resetNavigation}>Start Over</StyledButton>
       </FlexCol>
     </InputScreen>
   );
