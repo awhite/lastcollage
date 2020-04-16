@@ -19,7 +19,7 @@ const GridSquareBase = styled.td`
 
 class GridSquare extends Component {
   state = {
-    mouseOn: false
+    mouseOn: false,
   };
 
   render() {
@@ -61,8 +61,6 @@ const SizeSelectionWrapper = styled.table`
   max-width: 700px;
   width: 100%;
   border-collapse: collapse;
-  margin-left: auto;
-  margin-right: auto;
   margin-bottom: 48px;
   cursor: pointer;
 `;
@@ -71,10 +69,14 @@ const Grey = styled.span`
   color: grey;
 `;
 
+const StyledCol = styled(FlexCol)`
+  margin: 0 16px;
+`;
+
 class SizeSelectionGrid extends Component {
   static defaultProps = {
     rowNum: 14,
-    colNum: 14
+    colNum: 14,
   };
 
   state = {
@@ -83,12 +85,12 @@ class SizeSelectionGrid extends Component {
     mouseX: 0,
     mouseY: 0,
     bottomRight: { row: -1, col: -1 },
-    hoverBottomRight: { row: -1, col: -1 }
+    hoverBottomRight: { row: -1, col: -1 },
   };
 
   render() {
     return (
-      <FlexCol>
+      <StyledCol>
         <MainText>{this.printSize()}</MainText>
         <SizeSelectionWrapper onMouseOver={this.onMouseOver} onMouseLeave={this.onMouseLeave}>
           <tbody>
@@ -107,7 +109,7 @@ class SizeSelectionGrid extends Component {
             ))}
           </tbody>
         </SizeSelectionWrapper>
-      </FlexCol>
+      </StyledCol>
     );
   }
 
@@ -161,9 +163,9 @@ class SizeSelectionGrid extends Component {
             return SELECTED;
           }
           return rowNum <= newRow && colNum <= newCol ? HOVER : NOT_SELECTED;
-        })
+        }),
       ),
-      hoverBottomRight: { row: newRow, col: newCol }
+      hoverBottomRight: { row: newRow, col: newCol },
     });
   };
 
@@ -171,10 +173,10 @@ class SizeSelectionGrid extends Component {
     this.setState({
       cells: this.state.cells.map((row, rowNum) =>
         row.map((selected, colNum) =>
-          rowNum <= newRow && colNum <= newCol ? SELECTED : NOT_SELECTED
-        )
+          rowNum <= newRow && colNum <= newCol ? SELECTED : NOT_SELECTED,
+        ),
       ),
-      bottomRight: { row: newRow, col: newCol }
+      bottomRight: { row: newRow, col: newCol },
     });
     this.props.onSelectGridSize(newRow + 1, newCol + 1);
   };

@@ -4,7 +4,7 @@ export const periods = [
   { key: '3month', title: '3 Months' },
   { key: '6month', title: '6 Months' },
   { key: '1year', title: '1 Year' },
-  { key: 'forever', title: 'Forever' }
+  { key: 'forever', title: 'Forever' },
 ];
 
 export function getPeriodFromKey(key) {

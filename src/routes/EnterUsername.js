@@ -1,39 +1,40 @@
-import React, { Component } from 'react';
-import { InputScreen, MainInput, KeypressOptionGroup } from '../components';
-import { KEY_ENTER } from '../util/constants';
-import { SelectTimespan } from '../routes';
+import React, { useState } from 'react';
 
-export default class EnterUsername extends Component {
-  state = {
-    username: ''
-  };
+import { InputScreen, MainInput, Button, ButtonContainer } from '../components';
+import { KEYCODE_ENTER } from '../util/constants';
+import { useKeyButton } from 'hooks';
 
-  onSelectOption = key => {
-    switch (key) {
-      case KEY_ENTER:
-        this.props.navigate(SelectTimespan, { username: this.state.username });
-        break;
-      default:
-        throw new Error(`Unsupported option ${key}`);
-    }
-  };
+const EnterUsername = ({ navigation: { navigateNext, navigateBack } }) => {
+  const [username, setUsername] = useState('');
+  const isFormFilled = () => username.trim() !== '';
 
-  onChangeInput = ({ target: { value } }) => this.setState({ username: value });
-
-  render() {
-    return (
-      <InputScreen title="Enter your Last.fm username">
-        <MainInput
-          center
-          placeholder="Username"
-          value={this.state.username}
-          onChange={this.onChangeInput}
-        />
-        <KeypressOptionGroup
-          options={[{ key: KEY_ENTER, title: 'Next', disabled: this.state.username === '' }]}
-          onSelectOption={this.onSelectOption}
-        />
-      </InputScreen>
-    );
+  const onSelectOption = () => {
+    if (!isFormFilled()) return;
+    navigateNext({ username });
   }
-}
+
+  useKeyButton(KEYCODE_ENTER, onSelectOption);
+
+  const onChangeInput = ({ target: { value } }) => setUsername(value);
+
+  return (
+    <InputScreen title="Enter your Last.fm username" center>
+      <MainInput
+        center
+        placeholder="Username"
+        value={username}
+        onChange={onChangeInput}
+      />
+      <ButtonContainer>
+        <Button
+          onClick={onSelectOption}
+          disabled={!isFormFilled()}
+        >
+          Next
+        </Button>
+      </ButtonContainer>
+    </InputScreen>
+  );
+};
+
+export default EnterUsername;

@@ -1,26 +1,27 @@
-import React, { Component } from 'react';
-import { PageTitle, MainText, Red, Link, FlexCol, Button } from '../components';
-import { AccountPrompt } from '../routes';
+import React from 'react';
 
-export default class Welcome extends Component {
-  getStarted = () => {
-    this.props.navigate(AccountPrompt);
+import { PageTitle, MainText, Red, Link, FlexCol, Button } from '../components';
+
+const Welcome = ({ navigation: { navigateNext, clearNavigationParams } }) => {
+  const getStarted = () => {
+    clearNavigationParams();
+    navigateNext();
   };
 
-  render() {
-    return (
-      <div className="container">
-        <PageTitle>
-          Welcome to <Red>Lastcollage</Red>
-        </PageTitle>
-        <MainText>
-          Generate a collage from your <Link href="https://www.last.fm/">Last.fm</Link> scrobbles
-        </MainText>
-        <FlexCol>
-          <Button onClick={this.getStarted}>Get started</Button>
-          <Button>Sign in</Button>
-        </FlexCol>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="container">
+      <PageTitle>
+        Welcome to <Red>Lastcollage</Red>
+      </PageTitle>
+      <MainText>
+        Generate a collage from your <Link href="https://www.last.fm/">Last.fm</Link> scrobbles
+      </MainText>
+      <FlexCol>
+        <Button onClick={getStarted}>Get started</Button>
+        {/* <Button>Sign in</Button> */}
+      </FlexCol>
+    </div>
+  );
+};
+
+export default Welcome;

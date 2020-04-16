@@ -1,13 +1,12 @@
-import React, { Component } from 'react';
-import { InputScreen, KeypressOptionGroup } from '../components';
+import React from 'react';
+import { InputScreen, Button, ButtonContainer, BackButton } from '../components';
 import { KEY_ENTER } from '../util/constants';
-import { LoadCollage } from '../routes';
 
-export default class Generate extends Component {
-  onSelectOption = key => {
+const Generate = ({ navigation: { navigateNext, navigateBack } }) => {
+  const onSelectOption = key => {
     switch (key) {
       case KEY_ENTER:
-        // this.props.navigate(LoadCollage, {
+        // navigateNext({
         //   username: 'aaapwww',
         //   period: '1week',
         //   rowNum: '13',
@@ -16,21 +15,21 @@ export default class Generate extends Component {
         //   showName: false,
         //   hideMissing: true
         // });
-        this.props.navigate(LoadCollage);
+        navigateNext({ type: 'albums' });
         break;
       default:
         throw new Error(`Unsupported option ${key}`);
     }
   };
 
-  render() {
-    return (
-      <InputScreen title="Click the button to generate your collage">
-        <KeypressOptionGroup
-          options={[{ key: KEY_ENTER, title: 'Generate' }]}
-          onSelectOption={this.onSelectOption}
-        />
-      </InputScreen>
-    );
-  }
-}
+  return (
+    <InputScreen title="Click the button to generate your collage" center>
+      <ButtonContainer>
+        <Button onClick={() => onSelectOption(KEY_ENTER)}>Generate</Button>
+        <BackButton onClick={navigateBack} />
+      </ButtonContainer>
+    </InputScreen>
+  );
+};
+
+export default Generate;

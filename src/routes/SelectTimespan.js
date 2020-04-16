@@ -1,22 +1,23 @@
-import React, { Component } from 'react';
-import { InputScreen, KeypressOptionGroup } from '../components';
-import { SelectSize } from '../routes';
+import React from 'react';
+
+import { InputScreen, Button, BackButton, ButtonContainer } from '../components';
 import { periods, getPeriodFromKey } from '../lastfm';
 
-export default class SelectTimespan extends Component {
-  onSelectOption = key => {
-    this.props.navigate(SelectSize, { period: getPeriodFromKey(key) });
+const SelectTimespan = ({ navigation: { navigateNext, navigateBack } }) => {
+  const onSelectOption = key => {
+    navigateNext({ period: getPeriodFromKey(key) });
   };
 
-  render() {
-    return (
-      <InputScreen title="How long do you want this collage to span?">
-        <KeypressOptionGroup
-          ordered
-          options={periods.map(({ title }) => title)}
-          onSelectOption={this.onSelectOption}
-        />
-      </InputScreen>
-    );
-  }
-}
+  return (
+    <InputScreen title="How long do you want this collage to span?" center>
+      <ButtonContainer>
+        {periods.map(({ title }, index) => (
+          <Button key={title} onClick={() => onSelectOption(index + 1)}>{title}</Button>
+        ))}
+        <BackButton onClick={navigateBack} />
+      </ButtonContainer>
+    </InputScreen>
+  );
+};
+
+export default SelectTimespan;

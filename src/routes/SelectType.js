@@ -1,22 +1,20 @@
-import React, { Component } from 'react';
-import { InputScreen, KeypressOptionGroup } from '../components';
-import { Generate } from '../routes';
-import { types, getTypeFromKey } from '../lastfm';
+import React from 'react';
 
-export default class SelectType extends Component {
-  onSelectOption = key => {
-    this.props.navigate(Generate, { type: getTypeFromKey(key) });
+import { InputScreen, Button } from '../components';
+import { types, getTypeFromKey } from '../lastfm';
+import { ColBackButton } from 'components/BackButton';
+
+const SelectType = ({ navigation: { navigateNext, navigateBack } }) => {
+  const onSelectOption = key => {
+    navigateNext({ type: getTypeFromKey(key) });
   };
 
-  render() {
-    return (
-      <InputScreen title="Albums or Artists?">
-        <KeypressOptionGroup
-          ordered
-          options={types.map(({ title }) => title)}
-          onSelectOption={this.onSelectOption}
-        />
-      </InputScreen>
-    );
-  }
-}
+  return (
+    <InputScreen title="Albums or Artists?" center>
+      {types.map(({ title }, index) => <Button key={title} onClick={() => onSelectOption(index + 1)}>{title}</Button>)}
+      <ColBackButton onClick={navigateBack} />
+    </InputScreen>
+  );
+};
+
+export default SelectType;

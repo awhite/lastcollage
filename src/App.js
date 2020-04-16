@@ -1,38 +1,60 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import { Welcome, AccountPrompt } from './routes';
-import Test from './routes/Test';
+import navigationOrder from './routes';
 import { grey } from './styles/colors';
 
 const AppContainer = styled.div`
+  position: relative;
   text-align: center;
+  max-width: 1200px;
+  margin: auto;
   background-color: ${grey};
   color: white;
 `;
 
-export default class App extends Component {
-  state = {
-    screen: Welcome,
-    // screen: AccountPrompt,
-    // screen: Test,
-    navigationParams: {}
-  };
+const App = () => {
+  const [navigationParams, setNavigationParams] = useState({});
+  const [navigationStack, setNavigationStack] = useState([0]);
 
-  render() {
-    return <AppContainer>{this.getComponentFromState()}</AppContainer>;
+  const addNavigationParams = params => setNavigationParams({ ...navigationParams, ...params });
+
+  const clearNavigationParams = () => setNavigationParams({});
+
+  const navigate = (delta, navigationParams = {}) => {
+    const newNavIndex = navigationStack[navigationStack.length - 1] + delta;
+    if (newNavIndex >= navigationOrder.length || newNavIndex < 0) throw new Error('Navigation screen index out of bounds');
+    setNavigationStack([...navigationStack, newNavIndex]);
+    addNavigationParams(navigationParams);
   }
 
-  getComponentFromState = () => {
-    return (
-      <this.state.screen navigate={this.navigate} navigationParams={this.state.navigationParams} />
-    );
-  };
+  const navigateNext = navigationParams => navigate(1, navigationParams);
 
-  navigate = (screen, navigationParams) => {
-    this.setState({
-      screen,
-      navigationParams: { ...this.state.navigationParams, ...navigationParams }
-    });
-  };
+  const navigateBack = () => {
+    setNavigationStack(navigationStack.slice(0, navigationStack.length - 1));
+  }
+
+  const resetNavigation = () => {
+    clearNavigationParams();
+    setNavigationStack([navigationStack[0]]);
+  }
+
+  const navigation = {
+    navigate,
+    navigateNext,
+    navigateBack,
+    navigationParams,
+    resetNavigation,
+    clearNavigationParams,
+  }
+
+  const Screen = navigationOrder[navigationStack[navigationStack.length - 1]];
+
+  return (
+    <AppContainer>
+      <Screen navigation={navigation} />
+    </AppContainer>
+  );
 }
+
+export default App;
