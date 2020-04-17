@@ -2,14 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
-  position: fixed;
+  position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
-  margin-bottom: 10px;
+  padding-bottom: 10px;
   text-align: center;
   font-weight: 500;
   color: #aaa;
+  letter-spacing: 0.25px;
+  padding-top: 30px;
 `;
 
 const Copyright = () => (

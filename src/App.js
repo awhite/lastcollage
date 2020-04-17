@@ -12,6 +12,12 @@ const AppContainer = styled.div`
   margin: auto;
   background-color: ${grey};
   color: white;
+  padding-bottom: 58px;
+`;
+
+const Wrapper = styled.div`
+  position: relative;
+  min-height: 100vh;
 `;
 
 const App = () => {
@@ -52,10 +58,12 @@ const App = () => {
   const Screen = navigationOrder[navigationStack[navigationStack.length - 1]];
 
   return (
-    <AppContainer>
-      <Screen navigation={navigation} />
+    <Wrapper>
+      <AppContainer>
+        <Screen navigation={navigation} />
+      </AppContainer>
       <Copyright />
-    </AppContainer>
+    </Wrapper>
   );
 }
 
