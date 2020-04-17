@@ -1,7 +1,11 @@
 {
-  "name": "lastcollage",
-  "version": "0.1.0",
-  "private": true,
+  "name": "lastcollage-client",
+  "version": "0.1.1",
+  "description": "Generates a collage of album artwork based on data from Last.fm",
+  "main": "index.js",
+  "repository": "git@github.com:awhite/lastcollage-cliient.git",
+  "author": "Alex White <awhite4096@gmail.com>",
+  "license": "MIT",
   "dependencies": {
     "@material-ui/core": "^4.9.10",
     "@testing-library/jest-dom": "^4.2.4",

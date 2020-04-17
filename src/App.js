@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import navigationOrder from './routes';
 import { grey } from './styles/colors';
+import { Copyright } from './components';
 
 const AppContainer = styled.div`
   position: relative;
@@ -53,6 +54,7 @@ const App = () => {
   return (
     <AppContainer>
       <Screen navigation={navigation} />
+      <Copyright />
     </AppContainer>
   );
 }
