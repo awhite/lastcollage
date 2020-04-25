@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+
 import { PageTitle, MainText, Red } from '.';
 
 const Container = styled.div`
@@ -9,11 +11,17 @@ const Container = styled.div`
   ${props => props.center && 'align-items: center;'}
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
+
 const InputScreen = ({ title, center, children }) => (
   <div>
-    <PageTitle>
-      <Red>Lastcollage</Red>
-    </PageTitle>
+    <StyledLink to="/">
+      <PageTitle>
+        <Red>Lastcollage</Red>
+      </PageTitle>
+    </StyledLink>
     {title && <MainText>{title}</MainText>}
     <Container center={center}>{children}</Container>
   </div>

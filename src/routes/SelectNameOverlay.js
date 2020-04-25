@@ -1,15 +1,23 @@
 import React from 'react';
+import { useHistory, Redirect } from 'react-router-dom';
 
 import { InputScreen, Button, BackButton, ButtonContainer } from '../components';
 
-const SelectNameOverlay = ({ navigation: { navigateNext, navigateBack } }) => {
+const SelectNameOverlay = () => {
+
+  const history = useHistory();
+  const { location } = history;
+
+  if (!(location.state)) return (
+    <Redirect to="/" />
+  );
 
   return (
     <InputScreen title="Do you want to overlay the album and artist name on each cover?" center>
       <ButtonContainer>
-        <Button onClick={() => navigateNext({ showName: 'true' })}>Yes</Button>
-        <Button onClick={() => navigateNext({ showName: 'false' })}>No</Button>
-        <BackButton onClick={navigateBack} />
+        <Button onClick={() => history.push('/generate', { ...location.state, showName: 'true' })}>Yes</Button>
+        <Button onClick={() => history.push('/generate', { ...location.state, showName: 'false' })}>No</Button>
+        <BackButton onClick={() => history.goBack()} />
       </ButtonContainer>
     </InputScreen>
   );

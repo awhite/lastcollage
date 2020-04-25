@@ -1,5 +1,6 @@
 import React, { useReducer } from 'react';
 import styled from 'styled-components';
+import { useHistory, Redirect } from 'react-router-dom';
 
 import { InputScreen, Button, SizeSelectionGrid, ButtonContainer, BackButton } from '../components';
 import { KEYCODE_ENTER } from '../util/constants';
@@ -11,7 +12,8 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const SelectSize = ({ navigation: { navigateNext, navigateBack } }) => {
+const SelectSize = () => {
+
   const reducer = (state, action) => {
     switch (action.type) {
       case 'selectGridSize':
@@ -38,10 +40,17 @@ const SelectSize = ({ navigation: { navigateNext, navigateBack } }) => {
   const onSelectOption = () => {
     if (!isFormFilled()) return;
     const { rowNum, colNum } = state;
-    navigateNext({ rowNum, colNum });
+    history.push('/overlay', { ...location.state, rowNum, colNum });
   };
 
   useKeyButton(KEYCODE_ENTER, onSelectOption);
+
+  const history = useHistory();
+  const { location } = history;
+
+  if (!(location.state)) return (
+    <Redirect to="/" />
+  );
 
   const onSelectGridSize = (rowNum, colNum) => dispatch({
     type: 'selectGridSize',
@@ -60,7 +69,7 @@ const SelectSize = ({ navigation: { navigateNext, navigateBack } }) => {
       <Container>
         <ButtonContainer row>
           <Button onClick={onSelectOption} disabled={!isFormFilled()}>Next</Button>
-          <BackButton onClick={navigateBack} />
+          <BackButton onClick={() => history.goBack()} />
         </ButtonContainer>
       </Container>
     </InputScreen>

@@ -3,14 +3,17 @@ import React, { useState } from 'react';
 import { InputScreen, MainInput, Button, ButtonContainer } from '../components';
 import { KEYCODE_ENTER } from '../util/constants';
 import { useKeyButton } from 'hooks';
+import { useHistory } from 'react-router-dom';
 
-const EnterUsername = ({ navigation: { navigateNext, navigateBack } }) => {
+const EnterUsername = () => {
   const [username, setUsername] = useState('');
   const isFormFilled = () => username.trim() !== '';
 
+  const history = useHistory();
+
   const onSelectOption = () => {
     if (!isFormFilled()) return;
-    navigateNext({ username });
+    history.push('/timespan', { username });
   }
 
   useKeyButton(KEYCODE_ENTER, onSelectOption);

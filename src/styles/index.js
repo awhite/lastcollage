@@ -21,4 +21,15 @@ export const theme = createMuiTheme({
   typography: {
     useNextVariants: true,
   },
+  overrides: {
+    MuiInput: {
+      input: {
+        fontSize: '22pt',
+        minWidth: 280,
+        maxWidth: 400,
+        color: 'white',
+        paddingBottom: 8,
+      }
+    }
+  }
 });

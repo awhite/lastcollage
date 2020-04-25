@@ -1,10 +1,13 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 import { PageTitle, MainText, Red, Link, FlexCol, Button } from '../components';
+const Welcome = () => {
 
 const Welcome = ({ navigation: { navigateNext, clearNavigationParams } }) => {
+  const history = useHistory();
   const getStarted = () => {
-    clearNavigationParams();
+    history.push('/username', {});
     navigateNext();
   };
 

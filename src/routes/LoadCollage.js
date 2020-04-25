@@ -1,17 +1,18 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
+import { useHistory, Redirect } from 'react-router-dom';
 
 import { InputScreen } from '../components';
 import { BASE_URL } from '../util/constants';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-const LoadCollage = ({ navigation: { navigateNext, navigationParams } }) => {
+const LoadCollage = () => {
   const onCollageLoaded = imgUrl => {
-    navigateNext({ imgUrl });
+    history.replace('/collage', { ...location.state, imgUrl });
   };
 
   const onCollageLoadError = err => {
-    navigateNext({ err });
+    history.replace('/collage', { ...location.state, err });
   };
 
   useEffect(() => {
@@ -19,7 +20,7 @@ const LoadCollage = ({ navigation: { navigateNext, navigationParams } }) => {
       try {
         const { data: imgUrl } = await axios.get(`${BASE_URL}/collage`, {
           params: {
-            ...navigationParams,
+            ...location.state,
           },
           responseType: 'text',
         });
@@ -29,6 +30,13 @@ const LoadCollage = ({ navigation: { navigateNext, navigationParams } }) => {
       }
     })();
   });
+
+  const history = useHistory();
+  const { location } = history;
+
+  if (!(location.state)) return (
+    <Redirect to="/" />
+  );
 
   return (
     <InputScreen title="Generating your collage..." center>

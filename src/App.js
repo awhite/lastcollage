@@ -1,9 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
+import { ThemeProvider } from '@material-ui/core';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import navigationOrder from './routes';
 import { grey } from './styles/colors';
+import { theme } from './styles';
 import { Copyright } from './components';
+import {
+  Welcome,
+  EnterUsername,
+  SelectTimespan,
+  SelectSize,
+  SelectNameOverlay,
+  Generate,
+  LoadCollage,
+  ShowCollage,
+} from 'routes';
 
 const AppContainer = styled.div`
   position: relative;
@@ -18,52 +30,30 @@ const AppContainer = styled.div`
 const Wrapper = styled.div`
   position: relative;
   min-height: 100vh;
+  overflow: auto;
 `;
 
 const App = () => {
-  const [navigationParams, setNavigationParams] = useState({});
-  const [navigationStack, setNavigationStack] = useState([0]);
-
-  const addNavigationParams = params => setNavigationParams({ ...navigationParams, ...params });
-
-  const clearNavigationParams = () => setNavigationParams({});
-
-  const navigate = (delta, navigationParams = {}) => {
-    const newNavIndex = navigationStack[navigationStack.length - 1] + delta;
-    if (newNavIndex >= navigationOrder.length || newNavIndex < 0) throw new Error('Navigation screen index out of bounds');
-    setNavigationStack([...navigationStack, newNavIndex]);
-    addNavigationParams(navigationParams);
-  }
-
-  const navigateNext = navigationParams => navigate(1, navigationParams);
-
-  const navigateBack = () => {
-    setNavigationStack(navigationStack.slice(0, navigationStack.length - 1));
-  }
-
-  const resetNavigation = () => {
-    clearNavigationParams();
-    setNavigationStack([navigationStack[0]]);
-  }
-
-  const navigation = {
-    navigate,
-    navigateNext,
-    navigateBack,
-    navigationParams,
-    resetNavigation,
-    clearNavigationParams,
-  }
-
-  const Screen = navigationOrder[navigationStack[navigationStack.length - 1]];
-
   return (
-    <Wrapper>
-      <AppContainer>
-        <Screen navigation={navigation} />
-      </AppContainer>
-      <Copyright />
-    </Wrapper>
+    <ThemeProvider theme={theme}>
+      <Wrapper>
+        <AppContainer>
+          <BrowserRouter>
+            <Switch>
+              <Route path="/username"><EnterUsername /></Route>
+              <Route path="/timespan"><SelectTimespan /></Route>
+              <Route path="/size"><SelectSize /></Route>
+              <Route path="/overlay"><SelectNameOverlay /></Route>
+              <Route path="/generate"><Generate /></Route>
+              <Route path="/load"><LoadCollage /></Route>
+              <Route path="/collage"><ShowCollage /></Route>
+              <Route path="/"><Welcome /></Route>
+            </Switch>
+          </BrowserRouter>
+        </AppContainer>
+        <Copyright />
+      </Wrapper>
+    </ThemeProvider>
   );
 }
 

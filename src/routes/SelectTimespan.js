@@ -2,10 +2,18 @@ import React from 'react';
 
 import { InputScreen, Button, BackButton, ButtonContainer } from '../components';
 import { periods, getPeriodFromKey } from '../lastfm';
+import { useHistory, Redirect } from 'react-router-dom';
 
-const SelectTimespan = ({ navigation: { navigateNext, navigateBack } }) => {
+const SelectTimespan = () => {
+  const history = useHistory();
+  const { location } = history;
+
+  if (!(location.state)) return (
+    <Redirect to="/" />
+  );
+
   const onSelectOption = key => {
-    navigateNext({ period: getPeriodFromKey(key) });
+    history.push('/size', { ...location.state, period: getPeriodFromKey(key) });
   };
 
   return (
@@ -14,7 +22,7 @@ const SelectTimespan = ({ navigation: { navigateNext, navigateBack } }) => {
         {periods.map(({ title }, index) => (
           <Button key={title} onClick={() => onSelectOption(index + 1)}>{title}</Button>
         ))}
-        <BackButton onClick={navigateBack} />
+        <BackButton onClick={() => history.goBack()} />
       </ButtonContainer>
     </InputScreen>
   );

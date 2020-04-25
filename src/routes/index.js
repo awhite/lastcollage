@@ -1,19 +1,8 @@
-import Welcome from './Welcome';
-import EnterUsername from './EnterUsername';
-import SelectTimespan from './SelectTimespan';
-import SelectSize from './SelectSize';
-import SelectNameOverlay from './SelectNameOverlay';
-import Generate from './Generate';
-import LoadCollage from './LoadCollage';
-import ShowCollage from './ShowCollage';
-
-export default [
-  Welcome,
-  EnterUsername,
-  SelectTimespan,
-  SelectSize,
-  SelectNameOverlay,
-  Generate,
-  LoadCollage,
-  ShowCollage,
-];
+export { default as Welcome } from './Welcome';
+export { default as EnterUsername } from './EnterUsername';
+export { default as SelectTimespan } from './SelectTimespan';
+export { default as SelectSize } from './SelectSize';
+export { default as SelectNameOverlay } from './SelectNameOverlay';
+export { default as Generate } from './Generate';
+export { default as LoadCollage } from './LoadCollage';
+export { default as ShowCollage } from './ShowCollage';
