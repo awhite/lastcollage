@@ -3,7 +3,7 @@ import { useHistory, Redirect } from 'react-router-dom';
 
 import { InputScreen, Button, BackButton, ButtonContainer } from '../components';
 
-const SelectNameOverlay = () => {
+const SelectHideMissing = () => {
 
   const history = useHistory();
   const { location } = history;
@@ -13,14 +13,14 @@ const SelectNameOverlay = () => {
   );
 
   return (
-    <InputScreen title="Do you want to overlay the album and artist name on each cover?" center>
+    <InputScreen title="Do you want to hide albums with missing artwork?" center>
       <ButtonContainer>
-        <Button onClick={() => history.push('/hideMissing', { ...location.state, showName: 'true' })}>Yes</Button>
-        <Button onClick={() => history.push('/hideMissing', { ...location.state, showName: 'false' })}>No</Button>
+        <Button onClick={() => history.push('/generate', { ...location.state, hideMissing: 'true' })}>Yes</Button>
+        <Button onClick={() => history.push('/generate', { ...location.state, hideMissing: 'false' })}>No</Button>
         <BackButton onClick={() => history.goBack()} />
       </ButtonContainer>
     </InputScreen>
   );
 };
 
-export default SelectNameOverlay;
+export default SelectHideMissing;

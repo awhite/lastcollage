@@ -12,6 +12,7 @@ import {
   SelectTimespan,
   SelectSize,
   SelectNameOverlay,
+  SelectHideMissing,
   Generate,
   LoadCollage,
   ShowCollage,
@@ -44,6 +45,7 @@ const App = () => {
               <Route path="/timespan"><SelectTimespan /></Route>
               <Route path="/size"><SelectSize /></Route>
               <Route path="/overlay"><SelectNameOverlay /></Route>
+              <Route path="/hideMissing"><SelectHideMissing /></Route>
               <Route path="/generate"><Generate /></Route>
               <Route path="/load"><LoadCollage /></Route>
               <Route path="/collage"><ShowCollage /></Route>
