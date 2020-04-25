@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { SubText, FlexCol, Button, CollageDescription } from '.';
 
 const Container = styled(FlexCol)`
-  margin-top: 48px;
+  margin-top: 64px;
 `;
 
 const StyledButton = styled(Button)`
