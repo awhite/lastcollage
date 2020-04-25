@@ -19,21 +19,22 @@ const ResultDescription = ({ navigationParams: {
   rowNum,
   colNum,
   type,
-  showName,
-  hideMissing,
 } }) => {
   const periodName = periods.find(({ key }) => key === period).title.toLowerCase();
   const typeName = types.find(({ key }) => key === type).title.toLowerCase();
   const dimensions = `${colNum} x ${rowNum}`;
+  const forever = period === 'forever';
 
   return (
     <Container>
-      <strong>{dimensions}</strong> collage of top <strong>{typeName}</strong> for <strong>{username}</strong>
-      {period !== 'forever' && (
-        <> in the past <strong>{periodName}</strong></>
-      )}
+      <span>
+        <strong>{dimensions}</strong> collage of top <strong>{typeName}</strong> for <strong>{username}</strong>
+        {!forever && (
+          <> in the past <strong>{periodName}</strong></>
+        )}
+      </span>
     </Container>
   );
-}
+};
 
 export default ResultDescription;

@@ -15,6 +15,23 @@ const LoadCollage = () => {
     history.replace('/collage', { ...location.state, err });
   };
 
+  const saveLastCollageInfo = () => {
+    const {
+      username,
+      period,
+      rowNum,
+      colNum,
+      type,
+      showName,
+    } = location.state;
+    localStorage.setItem('username', username);
+    localStorage.setItem('period', period);
+    localStorage.setItem('rowNum', rowNum);
+    localStorage.setItem('colNum', colNum);
+    localStorage.setItem('type', type);
+    localStorage.setItem('showName', showName);
+  }
+
   useEffect(() => {
     (async () => {
       try {
@@ -24,6 +41,7 @@ const LoadCollage = () => {
           },
           responseType: 'text',
         });
+        saveLastCollageInfo();
         onCollageLoaded(imgUrl);
       } catch (err) {
         onCollageLoadError(err);

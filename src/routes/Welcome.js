@@ -1,14 +1,43 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { PageTitle, MainText, Red, Link, FlexCol, Button } from '../components';
+import { PageTitle, MainText, Red, Link, FlexCol, Button, RegenerateLastCollage } from '../components';
+
 const Welcome = () => {
 
-const Welcome = ({ navigation: { navigateNext, clearNavigationParams } }) => {
+  const [lastCollageInfo, setLastCollageInfo] = useState(null);
+
+  useEffect(() => {
+    const username = localStorage.getItem("username");
+    const period = localStorage.getItem("period");
+    const rowNum = localStorage.getItem("rowNum");
+    const colNum = localStorage.getItem("colNum");
+    const type = localStorage.getItem("type");
+    const showName = localStorage.getItem("showName");
+
+    if (
+      !username ||
+      !period ||
+      !rowNum ||
+      !colNum ||
+      !type ||
+      !showName
+    ) return;
+
+    setLastCollageInfo({
+      username,
+      period,
+      rowNum,
+      colNum,
+      type,
+      showName
+    });
+  }, []);
+
   const history = useHistory();
+
   const getStarted = () => {
     history.push('/username', {});
-    navigateNext();
   };
 
   return (
@@ -21,8 +50,8 @@ const Welcome = ({ navigation: { navigateNext, clearNavigationParams } }) => {
       </MainText>
       <FlexCol>
         <Button onClick={getStarted}>Get started</Button>
-        {/* <Button>Sign in</Button> */}
       </FlexCol>
+      {lastCollageInfo && <RegenerateLastCollage info={lastCollageInfo} />}
     </div>
   );
 };
