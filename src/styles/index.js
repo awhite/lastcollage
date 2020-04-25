@@ -29,6 +29,7 @@ export const theme = createMuiTheme({
         maxWidth: 400,
         color: 'white',
         paddingBottom: 8,
+        fontFamily: 'Manrope',
       }
     }
   }

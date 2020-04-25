@@ -1,13 +1,31 @@
 $grey: #434343;
 
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Manrope'), url(./fonts/Manrope/Manrope-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Manrope'), url(./fonts/Manrope/Manrope-Bold.ttf) format('truetype');
+}
+
 body {
 	margin: 0;
 	padding: 0;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
-		"Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  background-color: $grey;
+}
+
+* {
+  font-family: 'Manrope', sans-serif;
 	-webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: $grey;
 }
 
 code {
