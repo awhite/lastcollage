@@ -5,7 +5,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import { grey } from './styles/colors';
 import { theme } from './styles';
-import { Copyright } from './components';
+import { Footer } from './components';
 import {
   Welcome,
   EnterUsername,
@@ -25,7 +25,7 @@ const AppContainer = styled.div`
   margin: auto;
   background-color: ${grey};
   color: white;
-  padding-bottom: 58px;
+  padding-bottom: 103px;
 `;
 
 const Wrapper = styled.div`
@@ -53,7 +53,7 @@ const App = () => {
             </Switch>
           </BrowserRouter>
         </AppContainer>
-        <Copyright />
+        <Footer />
       </Wrapper>
     </ThemeProvider>
   );

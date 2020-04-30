@@ -17,3 +17,5 @@ export { default as SizeSelectionGrid } from './SizeSelectionGrid';
 export { default as ResultDescription } from './ResultDescription';
 export { default as CollageDescription } from './CollageDescription';
 export { default as RegenerateLastCollage } from './RegenerateLastCollage';
+export { default as DonateButton } from './DonateButton';
+export { default as Footer } from './Footer';
