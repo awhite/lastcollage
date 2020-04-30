@@ -23,6 +23,7 @@ const LoadCollage = () => {
       colNum,
       type,
       showName,
+      hideMissing,
     } = location.state;
     localStorage.setItem('username', username);
     localStorage.setItem('period', period);
@@ -30,6 +31,7 @@ const LoadCollage = () => {
     localStorage.setItem('colNum', colNum);
     localStorage.setItem('type', type);
     localStorage.setItem('showName', showName);
+    localStorage.setItem('hideMissing', hideMissing);
   }
 
   useEffect(() => {

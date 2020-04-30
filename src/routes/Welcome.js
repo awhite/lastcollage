@@ -14,6 +14,7 @@ const Welcome = () => {
     const colNum = localStorage.getItem("colNum");
     const type = localStorage.getItem("type");
     const showName = localStorage.getItem("showName");
+    const hideMissing = localStorage.getItem("hideMissing");
 
     if (
       !username ||
@@ -21,7 +22,8 @@ const Welcome = () => {
       !rowNum ||
       !colNum ||
       !type ||
-      !showName
+      !showName ||
+      !hideMissing
     ) return;
 
     setLastCollageInfo({
@@ -30,7 +32,8 @@ const Welcome = () => {
       rowNum,
       colNum,
       type,
-      showName
+      showName,
+      hideMissing,
     });
   }, []);
 
