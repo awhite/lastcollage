@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { PageTitle, MainText, Red, Link, FlexCol, Button, RegenerateLastCollage, Bubble } from '../components';
+import { PageTitle, MainText, Red, Link, FlexCol, Button, RegenerateLastCollage, MaintenanceModeBubble } from '../components';
 
-const Welcome = () => {
+const Welcome = ({ isMaintenanceMode }) => {
 
   const [lastCollageInfo, setLastCollageInfo] = useState(null);
 
@@ -52,7 +52,9 @@ const Welcome = () => {
         Generate a collage from your <Link href="https://www.last.fm/">Last.fm</Link> scrobbles
       </MainText>
       <FlexCol>
-        <Bubble>Lastcollage is experiencing technical difficulties. Please check back in a few hours. In the meantime, feel free to use the <a href="//www.alexpwhite.me/lastfm">old generator</a>.</Bubble>
+        {isMaintenanceMode && (
+          <MaintenanceModeBubble />
+        )}
         <Button onClick={getStarted}>Get started</Button>
       </FlexCol>
       {lastCollageInfo && <RegenerateLastCollage info={lastCollageInfo} />}

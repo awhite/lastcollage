@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 // https://codepen.io/sdthornton/pen/wBZdXq

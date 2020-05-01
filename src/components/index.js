@@ -20,3 +20,4 @@ export { default as RegenerateLastCollage } from './RegenerateLastCollage';
 export { default as DonateButton } from './DonateButton';
 export { default as Footer } from './Footer';
 export { default as Bubble } from './Bubble';
+export { default as MaintenanceModeBubble } from './MaintenanceModeBubble';
