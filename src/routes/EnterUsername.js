@@ -18,7 +18,7 @@ const EnterUsername = () => {
 
   useKeyButton(KEYCODE_ENTER, onSelectOption);
 
-  const onChangeInput = ({ target: { value } }) => setUsername(value);
+  const onChangeInput = ({ target: { value } }) => setUsername(value.trim().toLowerCase());
 
   return (
     <InputScreen title="Enter your Last.fm username" center>
