@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { desktop } from '../util/breakpoints';
+
 const colStyles = css`
   flex-direction: column;
 
@@ -31,9 +33,9 @@ const ButtonContainer = styled.div`
 
   ${colStyles}
 
-  @media (min-width: 768px) {
+  ${desktop`
     ${props => props.row && rowStyles}
-  }
+  `}
 `;
 
 export default ButtonContainer;
