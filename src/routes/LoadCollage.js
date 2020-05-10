@@ -37,10 +37,9 @@ const LoadCollage = () => {
   useEffect(() => {
     (async () => {
       try {
-        const { data: imgUrl } = await axios.get(`${BASE_URL}/collage`, {
-          params: {
-            ...location.state,
-          },
+        const { data: imgUrl } = await axios.post(`${BASE_URL}/collage`, {
+          ...location.state,
+        }, {
           responseType: 'text',
         });
         saveLastCollageInfo();
