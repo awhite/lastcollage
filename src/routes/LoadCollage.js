@@ -7,8 +7,8 @@ import { BASE_URL } from '../util/constants';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 const LoadCollage = () => {
-  const onCollageLoaded = ({ path, rows, cols }) => {
-    history.replace('/collage', { ...location.state, imgUrl: path, rowNum: rows, colNum: cols });
+  const onCollageLoaded = ({ path, downloadPath, rows, cols }) => {
+    history.replace('/collage', { ...location.state, imgUrl: path, downloadPath, rowNum: rows, colNum: cols });
   };
 
   const onCollageLoadError = err => {
