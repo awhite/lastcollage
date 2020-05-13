@@ -17,7 +17,13 @@ const CollageDisplay = ({ imgUrl, downloadPath, filename, downloadDisabled, onCl
   );
 
   function renderImg() {
-    return <CollageImg crossOrigin="anonymous" src={imgUrl} className="img-responsive" />;
+    return (
+      <picture>
+        <source srcset={imgUrl} type="image/webp" />
+        <source srcset={downloadPath} type="image/png" />
+        <CollageImg crossOrigin="anonymous" src={downloadPath} className="img-responsive" alt="Collage (click to download)" />
+      </picture>
+    );
   }
 }
 
