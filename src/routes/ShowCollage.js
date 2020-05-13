@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory, Redirect } from 'react-router-dom';
 
 import { InputScreen, FlexCol, Error, ResultDescription, Button, ButtonContainer } from '../components';
@@ -8,6 +8,19 @@ const CollageImg = styled.img`
   width: 100%;
 `;
 
+const CollageDisplay = ({ imgUrl, downloadPath, filename, downloadDisabled, onClick }) => {
+  if (downloadDisabled) return renderImg();
+  return (
+    <a href={downloadPath} download={filename} onClick={onClick}>
+      {renderImg()}
+    </a>
+  );
+
+  function renderImg() {
+    return <CollageImg crossOrigin="anonymous" src={imgUrl} className="img-responsive" />;
+  }
+}
+
 const StyledButton = styled(Button)`
   margin-top: 64px;
 `;
@@ -15,6 +28,8 @@ const StyledButton = styled(Button)`
 const ShowCollage = () => {
   const history = useHistory();
   const { location } = history;
+
+  const [haveClickedDownload, setHaveClickedDownload] = useState(false);
 
   if (!location.state || !location.state.username) return (
     <Redirect to="/" />
@@ -29,20 +44,23 @@ const ShowCollage = () => {
     history.push('/');
   };
 
-  const { imgUrl, err } = location.state;
+  const { imgUrl, downloadPath, err } = location.state;
   const filename = generateFilename();
 
   if (err) {
     return <Error error={err} startOver={startOver} />
   }
 
+  const onClickDownload = () => {
+    setHaveClickedDownload(true);
+    setTimeout(() => setHaveClickedDownload(false), 5000);
+  };
+
   return (
     <InputScreen>
       <FlexCol>
         <ResultDescription navigationParams={location.state} />
-        <a href={imgUrl} download={filename}>
-          <CollageImg crossOrigin="anonymous" src={imgUrl} className="img-responsive" />
-        </a>
+        <CollageDisplay imgUrl={imgUrl} downloadPath={downloadPath} filename={filename} downloadDisabled={haveClickedDownload} onClick={onClickDownload} />
         <ButtonContainer>
           <StyledButton onClick={startOver}>Start Over</StyledButton>
         </ButtonContainer>

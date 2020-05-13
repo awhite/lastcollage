@@ -7,8 +7,8 @@ import { BASE_URL } from '../util/constants';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 const LoadCollage = () => {
-  const onCollageLoaded = imgUrl => {
-    history.replace('/collage', { ...location.state, imgUrl });
+  const onCollageLoaded = ({ path, downloadPath, rows, cols }) => {
+    history.replace('/collage', { ...location.state, imgUrl: path, downloadPath, rowNum: rows, colNum: cols });
   };
 
   const onCollageLoadError = err => {
@@ -37,14 +37,13 @@ const LoadCollage = () => {
   useEffect(() => {
     (async () => {
       try {
-        const { data: imgUrl } = await axios.get(`${BASE_URL}/collage`, {
-          params: {
-            ...location.state,
-          },
-          responseType: 'text',
+        const { data } = await axios.post(`${BASE_URL}/collage`, {
+          ...location.state,
+        }, {
+          responseType: 'json',
         });
         saveLastCollageInfo();
-        onCollageLoaded(imgUrl);
+        onCollageLoaded(data);
       } catch (err) {
         onCollageLoadError(err);
       }
