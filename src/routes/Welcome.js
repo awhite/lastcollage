@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { PageTitle, MainText, Red, Link, FlexCol, Button, RegenerateLastCollage, MaintenanceModeBubble } from '../components';
+import { validateParams } from '../util';
 
 const Welcome = ({ isMaintenanceMode }) => {
 
@@ -16,17 +17,7 @@ const Welcome = ({ isMaintenanceMode }) => {
     const showName = localStorage.getItem("showName");
     const hideMissing = localStorage.getItem("hideMissing");
 
-    if (
-      !username ||
-      !period ||
-      !rowNum ||
-      !colNum ||
-      !type ||
-      !showName ||
-      !hideMissing
-    ) return;
-
-    setLastCollageInfo({
+    const params = {
       username,
       period,
       rowNum,
@@ -34,7 +25,11 @@ const Welcome = ({ isMaintenanceMode }) => {
       type,
       showName,
       hideMissing,
-    });
+    };
+
+    if (!validateParams(params)) return;
+
+    setLastCollageInfo(params);
   }, []);
 
   const history = useHistory();

@@ -10,7 +10,7 @@ const SELECTED_AND_HOVER = 3;
 
 const LARGE_COLLAGE_NUM_IMAGES = 200;
 
-const GRID_ROWS = 30;
+const GRID_ROWS = 20;
 const GRID_COLS = GRID_ROWS;
 const cellWidth = `${Math.floor(100 / GRID_ROWS)}%`;
 
