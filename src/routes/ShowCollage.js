@@ -50,11 +50,11 @@ const ShowCollage = () => {
     history.push('/');
   };
 
-  const { imgUrl, downloadPath, err } = location.state;
+  const { imgUrl, downloadPath, errorMessage } = location.state;
   const filename = generateFilename();
 
-  if (err) {
-    return <Error error={err} startOver={startOver} />
+  if (errorMessage) {
+    return <Error message={errorMessage} startOver={startOver} />
   }
 
   const onClickDownload = () => {

@@ -32,8 +32,11 @@ const LoadCollage = () => {
     history.replace('/collage', { ...location.state, imgUrl: path, downloadPath, rowNum: rows, colNum: cols });
   }, [history, location.state]);
 
-  const onCollageLoadError = useCallback(err => {
-    history.replace('/collage', { ...location.state, err });
+  const onCollageLoadError = useCallback(errorMessage => {
+    if (typeof errorMessage !== 'string') {
+      errorMessage = 'Unknown error';
+    }
+    history.replace('/collage', { ...location.state, errorMessage });
   }, [history, location.state]);
 
   const saveLastCollageInfo = useCallback(() => {
@@ -65,8 +68,12 @@ const LoadCollage = () => {
         });
         saveLastCollageInfo();
         onCollageLoaded(data);
-      } catch (err) {
-        onCollageLoadError(err);
+      } catch ({ response }) {
+        if (response.data && response.data.message) {
+          onCollageLoadError(response.data.message);
+        } else {
+          onCollageLoadError(response.statusText);
+        }
       }
     })();
   }, [location.state, onCollageLoadError, onCollageLoaded, saveLastCollageInfo]);
