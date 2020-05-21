@@ -1,20 +1,26 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { red, dimRed } from '../styles/colors';
-import { FlexCol, MainText } from '../components';
+import { red, darkRed } from '../styles/colors';
+import { FlexCol, MainText, InfoBubble } from '../components';
 
 const NOT_SELECTED = 0;
 const HOVER = 1;
 const SELECTED = 2;
 const SELECTED_AND_HOVER = 3;
 
+const LARGE_COLLAGE_NUM_IMAGES = 200;
+
+const GRID_ROWS = 30;
+const GRID_COLS = GRID_ROWS;
+const cellWidth = `${Math.floor(100 / GRID_ROWS)}%`;
+
 const GridSquareBase = styled.td`
   position: relative;
   background-color: ${props => props.color};
   border: 2px solid white;
   border-radius: 4px;
-  width: 7%;
-  padding-bottom: 7%;
+  width: ${cellWidth};
+  padding-bottom: ${cellWidth};
 `;
 
 class GridSquare extends Component {
@@ -39,9 +45,9 @@ class GridSquare extends Component {
       case SELECTED:
         return red;
       case SELECTED_AND_HOVER:
-        return mouseOnGrid ? dimRed : red;
+        return mouseOnGrid ? darkRed : red;
       case HOVER:
-        return mouseOnGrid ? dimRed : 'transparent';
+        return mouseOnGrid ? darkRed : 'transparent';
       default:
         return 'transparent';
     }
@@ -58,10 +64,10 @@ class GridSquare extends Component {
 }
 
 const SizeSelectionWrapper = styled.table`
-  max-width: 700px;
+  max-width: 900px;
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 48px;
+  margin-bottom: 36px;
   cursor: pointer;
 `;
 
@@ -73,14 +79,15 @@ const StyledCol = styled(FlexCol)`
   margin: 0 16px;
 `;
 
-class SizeSelectionGrid extends Component {
-  static defaultProps = {
-    rowNum: 14,
-    colNum: 14,
-  };
+const SlowDisclaimer = styled(({ className }) => (
+  <InfoBubble className={className}>Large collages can take up to 3 minutes to generate</InfoBubble>
+))`
+  margin: 0 0 32px 0;
+`;
 
+class SizeSelectionGrid extends Component {
   state = {
-    cells: new Array(this.props.rowNum).fill(new Array(this.props.colNum).fill(NOT_SELECTED)),
+    cells: new Array(GRID_ROWS).fill(new Array(GRID_COLS).fill(NOT_SELECTED)),
     mouseOn: false,
     mouseX: 0,
     mouseY: 0,
@@ -89,6 +96,18 @@ class SizeSelectionGrid extends Component {
   };
 
   render() {
+    const isLarge = (() => {
+      const { bottomRight } = this.state;
+      const count = (bottomRight.col + 1) * (bottomRight.row + 1);
+      return count >= LARGE_COLLAGE_NUM_IMAGES;
+    })();
+
+    const isHoverLarge = (() => {
+      const { hoverBottomRight } = this.state;
+      const count = (hoverBottomRight.col + 1) * (hoverBottomRight.row + 1);
+      return count >= LARGE_COLLAGE_NUM_IMAGES;
+    })();
+
     return (
       <StyledCol>
         <MainText>{this.printSize()}</MainText>
@@ -109,6 +128,7 @@ class SizeSelectionGrid extends Component {
             ))}
           </tbody>
         </SizeSelectionWrapper>
+        {(isLarge || (this.state.mouseOn && isHoverLarge)) && <SlowDisclaimer />}
       </StyledCol>
     );
   }
@@ -116,13 +136,15 @@ class SizeSelectionGrid extends Component {
   getBottomRight = () =>
     this.state.mouseOn ? this.state.hoverBottomRight : this.state.bottomRight;
 
-  printSizeFromBottomRight = (bottomRight = this.state.bottomRight) => {
-    return `${bottomRight.col + 1} x ${bottomRight.row + 1}`;
+  getSizeHeadingFromBottomRight = (bottomRight = this.state.bottomRight) => {
+    const cols = bottomRight.col + 1;
+    const rows = bottomRight.row + 1;
+    return `${cols} x ${rows}`;
   };
 
   printSize = () => {
-    const selectedSize = this.printSizeFromBottomRight();
-    const hoverSize = <Grey>{this.printSizeFromBottomRight(this.state.hoverBottomRight)}</Grey>;
+    const selectedSize = this.getSizeHeadingFromBottomRight();
+    const hoverSize = <Grey>{this.getSizeHeadingFromBottomRight(this.state.hoverBottomRight)}</Grey>;
     if (!this.state.mouseOn) {
       return selectedSize;
     }
@@ -172,7 +194,7 @@ class SizeSelectionGrid extends Component {
   onClickSquare = (newRow, newCol) => {
     this.setState({
       cells: this.state.cells.map((row, rowNum) =>
-        row.map((selected, colNum) =>
+        row.map((_, colNum) =>
           rowNum <= newRow && colNum <= newCol ? SELECTED : NOT_SELECTED,
         ),
       ),
