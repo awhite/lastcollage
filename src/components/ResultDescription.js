@@ -1,16 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { grey, lightGrey } from '../styles';
 import { periods, types } from '../lastfm';
+import InfoBubble from './InfoBubble';
 
-const Container = styled.div`
-  border-radius: 4px;
+const Container = styled(InfoBubble)`
   margin: 0 16px 48px;
   font-size: 2rem;
-  padding: 24px;
-  background: ${lightGrey};
-  color: ${grey};
 `;
 
 const ResultDescription = ({ navigationParams: {

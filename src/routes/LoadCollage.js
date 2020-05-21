@@ -1,21 +1,42 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 import axios from 'axios';
 import { useHistory, Redirect } from 'react-router-dom';
 
-import { InputScreen } from '../components';
+import { InputScreen, InfoBubble } from '../components';
 import { BASE_URL } from '../util/constants';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { useCallback } from 'react';
+
+const Bubble = styled(InfoBubble)`
+  margin-top: 48px;
+`;
 
 const LoadCollage = () => {
-  const onCollageLoaded = ({ path, downloadPath, rows, cols }) => {
+  const [isTakingLong, setTakingLong] = useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setTakingLong(true);
+    }, 10000);
+
+    return () => {
+      clearTimeout(timeout);
+    }
+  }, []);
+
+  const history = useHistory();
+  const { location } = history;
+
+  const onCollageLoaded = useCallback(({ path, downloadPath, rows, cols }) => {
     history.replace('/collage', { ...location.state, imgUrl: path, downloadPath, rowNum: rows, colNum: cols });
-  };
+  }, [history, location.state]);
 
-  const onCollageLoadError = err => {
+  const onCollageLoadError = useCallback(err => {
     history.replace('/collage', { ...location.state, err });
-  };
+  }, [history, location.state]);
 
-  const saveLastCollageInfo = () => {
+  const saveLastCollageInfo = useCallback(() => {
     const {
       username,
       period,
@@ -32,7 +53,7 @@ const LoadCollage = () => {
     localStorage.setItem('type', type);
     localStorage.setItem('showName', showName);
     localStorage.setItem('hideMissing', hideMissing);
-  }
+  }, [location.state]);
 
   useEffect(() => {
     (async () => {
@@ -48,10 +69,7 @@ const LoadCollage = () => {
         onCollageLoadError(err);
       }
     })();
-  });
-
-  const history = useHistory();
-  const { location } = history;
+  }, [location.state, onCollageLoadError, onCollageLoaded, saveLastCollageInfo]);
 
   if (!(location.state)) return (
     <Redirect to="/" />
@@ -61,6 +79,9 @@ const LoadCollage = () => {
     <InputScreen title="Generating your collage..." center>
       {/* <CollageLoadingBar onLoad={this.onCollageLoaded} /> */}
       <CircularProgress />
+      {isTakingLong && (
+        <Bubble>Still working...</Bubble>
+      )}
     </InputScreen>
   );
 };
