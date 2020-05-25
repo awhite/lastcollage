@@ -17,11 +17,11 @@ const StyledLink = styled(Link)`
 
 const InputScreen = ({ title, center, children }) => (
   <div>
-    <StyledLink to="/">
-      <PageTitle>
+    <PageTitle>
+      <StyledLink to="/">
         <Red>Lastcollage</Red>
-      </PageTitle>
-    </StyledLink>
+      </StyledLink>
+    </PageTitle>
     {title && <MainText>{title}</MainText>}
     <Container center={center}>{children}</Container>
   </div>
