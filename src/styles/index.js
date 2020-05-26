@@ -24,12 +24,17 @@ export const theme = createMuiTheme({
   overrides: {
     MuiInput: {
       input: {
-        fontSize: '22pt',
-        minWidth: 280,
+        fontSize: '1.15rem',
+        minWidth: 160,
         maxWidth: 400,
         color: 'white',
         paddingBottom: 8,
         fontFamily: 'Manrope',
+      }
+    },
+    MuiOutlinedInput: {
+      adornedStart: {
+        maxWidth: 180,
       }
     }
   }

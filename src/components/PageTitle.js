@@ -2,11 +2,12 @@ import styled from 'styled-components';
 import { desktop } from '../util/breakpoints';
 
 export default styled.h1`
-  margin: 48px;
+  margin: 36px;
   font-weight: 400;
-  font-size: 3rem;
+  font-size: 2.25rem;
 
   ${desktop`
-    font-size: 5rem;
+    margin: 48px;
+    font-size: 3.5rem;
   `}
 `;

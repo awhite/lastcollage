@@ -30,11 +30,15 @@ const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 24px;
+  width: 100%;
+  align-items: stretch;
 
   ${colStyles}
 
   ${desktop`
     ${props => props.row && rowStyles}
+    width: inherit;
+    align-items: center;
   `}
 `;
 

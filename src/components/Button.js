@@ -1,12 +1,13 @@
 import React from 'react';
-import { red, dimRed, lightRed, darkRed } from '../styles';
 import styled from 'styled-components';
 
-export default styled(({ outlined, disabled, ...otherProps }) => <button disabled={disabled} {...otherProps} />)`
+import { red, dimRed, lightRed, darkRed } from '../styles';
+
+export default styled(({ className, outlined, disabled, isExpanded, ...otherProps }) => <button className={className} disabled={disabled} {...otherProps} />)`
   text-transform: none;
-  font-size: 24pt;
-  width: 280px;
-  padding: 16px 0;
+  font-size: 1.15rem;
+  min-width: 180px;
+  padding: 16px;
   cursor: pointer;
 
   ${props =>

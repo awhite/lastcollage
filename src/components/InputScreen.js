@@ -9,6 +9,8 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   ${props => props.center && 'align-items: center;'}
+  margin-left: 16px;
+  margin-right: 16px;
 `;
 
 const StyledLink = styled(Link)`
