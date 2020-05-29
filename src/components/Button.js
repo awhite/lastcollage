@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { red, dimRed, lightRed, darkRed } from '../styles';
+import { red, dimRed, darkRed } from '../styles';
 
 export default styled(({ className, outlined, disabled, isExpanded, ...otherProps }) => <button className={className} disabled={disabled} {...otherProps} />)`
   text-transform: none;
@@ -14,24 +14,20 @@ export default styled(({ className, outlined, disabled, isExpanded, ...otherProp
     props.outlined
       ? `
   background-color: transparent;
-  color: ${red};
-  border: 2px solid ${red};
+  color: white;
+  border: 2px solid white;
   border-radius: 4px;
 
   :hover {
-    background-color: ${lightRed};
-    color: white;
-    border: 2px solid ${lightRed};
+    background-color: ${dimRed};
   }
 
   :focus {
-    background-color: ${red};
-    color: white;
+    background-color: ${dimRed};
   }
 
   :active {
-    background-color: ${red};
-    color: white;
+    background-color: ${darkRed};
   }
   `
       : `

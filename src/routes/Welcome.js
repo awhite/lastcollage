@@ -1,7 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { PageTitle, MainText, Red, Link, FlexCol, Button, RegenerateLastCollage, MaintenanceModeBubble } from '../components';
+import {
+  PageTitle,
+  PageContent,
+  MainText,
+  Red,
+  Link,
+  Button,
+  RegenerateLastCollage,
+  MaintenanceModeBubble,
+  ButtonContainer,
+} from '../components';
 import { validateParams } from '../util';
 
 const Welcome = ({ isMaintenanceMode }) => {
@@ -39,20 +49,22 @@ const Welcome = ({ isMaintenanceMode }) => {
   };
 
   return (
-    <div className="container">
+    <div>
       <PageTitle>
         Welcome to <Red>Lastcollage</Red>
       </PageTitle>
-      <MainText>
-        Generate a collage from your <Link href="https://www.last.fm/">Last.fm</Link> scrobbles
-      </MainText>
-      <FlexCol>
+      <PageContent>
+        <MainText>
+          Generate a collage from your <Link href="https://www.last.fm/">Last.fm</Link> scrobbles
+        </MainText>
         {isMaintenanceMode && (
           <MaintenanceModeBubble />
         )}
-        <Button onClick={getStarted}>Get started</Button>
-      </FlexCol>
-      {lastCollageInfo && <RegenerateLastCollage info={lastCollageInfo} />}
+        <ButtonContainer>
+          <Button onClick={getStarted}>Get started</Button>
+        </ButtonContainer>
+        {lastCollageInfo && <RegenerateLastCollage info={lastCollageInfo} />}
+      </PageContent>
     </div>
   );
 };

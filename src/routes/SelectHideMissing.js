@@ -13,7 +13,7 @@ const SelectHideMissing = () => {
   );
 
   return (
-    <InputScreen title="Do you want to hide albums with missing artwork?" center>
+    <InputScreen title="Do you want to hide albums with missing artwork?">
       <ButtonContainer>
         <Button onClick={() => history.push('/generate', { ...location.state, hideMissing: 'true' })}>Yes</Button>
         <Button onClick={() => history.push('/generate', { ...location.state, hideMissing: 'false' })}>No</Button>

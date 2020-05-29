@@ -21,7 +21,7 @@ const EnterUsername = () => {
   const onChangeInput = ({ target: { value } }) => setUsername(value.trim().toLowerCase());
 
   return (
-    <InputScreen title="Enter your Last.fm username" center>
+    <InputScreen title="Enter your Last.fm username">
       <MainInput
         center
         placeholder="Username"

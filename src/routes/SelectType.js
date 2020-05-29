@@ -10,7 +10,7 @@ const SelectType = ({ navigation: { navigateNext, navigateBack } }) => {
   };
 
   return (
-    <InputScreen title="Albums or Artists?" center>
+    <InputScreen title="Albums or Artists?">
       {types.map(({ title }, index) => <Button key={title} onClick={() => onSelectOption(index + 1)}>{title}</Button>)}
       <ColBackButton onClick={navigateBack} />
     </InputScreen>

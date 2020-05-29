@@ -17,7 +17,7 @@ const AccountPrompt = ({ navigation: { navigate } }) => {
   };
 
   return (
-    <InputScreen title="Do you have a Last.fm account?" center>
+    <InputScreen title="Do you have a Last.fm account?">
       <Button onClick={() => onSelectOption(KEY_YES)}>Yes</Button>
       <Button onClick={() => onSelectOption(KEY_NO)}>No</Button>
     </InputScreen>

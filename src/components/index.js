@@ -21,3 +21,5 @@ export { default as DonateButton } from './DonateButton';
 export { default as Footer } from './Footer';
 export { default as InfoBubble } from './InfoBubble';
 export { default as MaintenanceModeBubble } from './MaintenanceModeBubble';
+export { default as PageContent } from './PageContent';
+export { default as LoadingSpinner } from './LoadingSpinner';

@@ -24,7 +24,7 @@ const Generate = () => {
   };
 
   return (
-    <InputScreen title="Click the button to generate your collage" center>
+    <InputScreen title="Click the button to generate your collage">
       <ButtonContainer>
         <Button onClick={() => onSelectOption(KEY_ENTER)}>Generate</Button>
         <BackButton onClick={() => history.goBack()} />

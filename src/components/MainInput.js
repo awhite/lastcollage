@@ -6,9 +6,10 @@ export default styled(({ center, ...otherProps }) => (
   <Input classes={{ input: 'input' }} autoFocus {...otherProps} />
 ))`
   margin-bottom: 48px;
+  display: flex;
+  justify-content: center;
 
   & .input {
-
     ${props => (props.center ? 'text-align: center;' : '')};
   }
 `;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+
 import { red, darkRed } from '../styles/colors';
 import { FlexCol, MainText, InfoBubble } from '../components';
 
@@ -12,15 +13,15 @@ const LARGE_COLLAGE_NUM_IMAGES = 200;
 
 const GRID_ROWS = 20;
 const GRID_COLS = GRID_ROWS;
-const cellWidth = `${Math.floor(100 / GRID_ROWS)}%`;
+const cellWidth = `${100 / GRID_ROWS}%`;
 
 const GridSquareBase = styled.td`
   position: relative;
   background-color: ${props => props.color};
   border: 2px solid white;
   border-radius: 4px;
-  width: ${cellWidth};
-  padding-bottom: ${cellWidth};
+  min-width: ${cellWidth};
+  padding: 0 0 ${cellWidth};
 `;
 
 class GridSquare extends Component {
@@ -64,11 +65,12 @@ class GridSquare extends Component {
 }
 
 const SizeSelectionWrapper = styled.table`
-  max-width: 900px;
+  max-width: 600px;
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 36px;
   cursor: pointer;
+  position: relative;
 `;
 
 const Grey = styled.span`
@@ -76,7 +78,7 @@ const Grey = styled.span`
 `;
 
 const StyledCol = styled(FlexCol)`
-  margin: 0 16px;
+  align-self: stretch;
 `;
 
 const SlowDisclaimer = styled(({ className }) => (

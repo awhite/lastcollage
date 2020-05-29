@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory, Redirect } from 'react-router-dom';
 
-import { InputScreen, FlexCol, Error, ResultDescription, Button, ButtonContainer } from '../components';
+import { InputScreen, Error, ResultDescription, Button, ButtonContainer } from '../components';
 import styled from 'styled-components';
 
 const CollageImg = styled.img`
@@ -64,13 +64,11 @@ const ShowCollage = () => {
 
   return (
     <InputScreen>
-      <FlexCol>
-        <ResultDescription navigationParams={location.state} />
-        <CollageDisplay imgUrl={imgUrl} downloadPath={downloadPath} filename={filename} downloadDisabled={haveClickedDownload} onClick={onClickDownload} />
-        <ButtonContainer>
-          <StyledButton onClick={startOver}>Start Over</StyledButton>
-        </ButtonContainer>
-      </FlexCol>
+      <ResultDescription navigationParams={location.state} />
+      <CollageDisplay imgUrl={imgUrl} downloadPath={downloadPath} filename={filename} downloadDisabled={haveClickedDownload} onClick={onClickDownload} />
+      <ButtonContainer>
+        <StyledButton onClick={startOver}>Start Over</StyledButton>
+      </ButtonContainer>
     </InputScreen>
   );
 };

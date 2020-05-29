@@ -17,7 +17,7 @@ const SelectTimespan = () => {
   };
 
   return (
-    <InputScreen title="How long do you want this collage to span?" center>
+    <InputScreen title="How long do you want this collage to span?">
       <ButtonContainer>
         {periods.map(({ title }, index) => (
           <Button key={title} onClick={() => onSelectOption(index + 1)}>{title}</Button>

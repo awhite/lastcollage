@@ -13,7 +13,7 @@ const SelectNameOverlay = () => {
   );
 
   return (
-    <InputScreen title="Do you want to overlay the album and artist name on each cover?" center>
+    <InputScreen title="Do you want to overlay the album and artist name on each cover?">
       <ButtonContainer>
         <Button onClick={() => history.push('/hideMissing', { ...location.state, showName: 'true' })}>Yes</Button>
         <Button onClick={() => history.push('/hideMissing', { ...location.state, showName: 'false' })}>No</Button>

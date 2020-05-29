@@ -3,9 +3,8 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { useHistory, Redirect } from 'react-router-dom';
 
-import { InputScreen, InfoBubble } from '../components';
+import { InputScreen, InfoBubble, LoadingSpinner } from '../components';
 import { BASE_URL } from '../util/constants';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import { useCallback } from 'react';
 
 const Bubble = styled(InfoBubble)`
@@ -83,9 +82,9 @@ const LoadCollage = () => {
   );
 
   return (
-    <InputScreen title="Generating your collage..." center>
+    <InputScreen title="Generating your collage...">
       {/* <CollageLoadingBar onLoad={this.onCollageLoaded} /> */}
-      <CircularProgress />
+      <LoadingSpinner />
       {isTakingLong && (
         <Bubble>Still working...</Bubble>
       )}

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 
 import { SubText, FlexCol, Button, CollageDescription } from '.';
+import ButtonContainer from './ButtonContainer';
 
 const Container = styled(FlexCol)`
   margin-top: 64px;
@@ -29,7 +30,9 @@ const RegenerateLastCollage = ({ info }) => {
   return (
     <Container>
       <SubText>or regenerate your last collage</SubText>
-      <StyledButton outlined onClick={generate}>Regenerate</StyledButton>
+      <ButtonContainer>
+        <StyledButton outlined onClick={generate}>Regenerate</StyledButton>
+      </ButtonContainer>
       <SubText>(<CollageDescription
         username={username}
         period={period}

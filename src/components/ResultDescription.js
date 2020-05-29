@@ -5,7 +5,7 @@ import { periods, types } from '../lastfm';
 import InfoBubble from './InfoBubble';
 
 const Container = styled(InfoBubble)`
-  margin: 0 16px 48px;
+  margin-bottom: 48px;
   font-size: 2rem;
 `;
 

@@ -3,41 +3,36 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import { PageTitle, MainText, Red } from '.';
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  ${props => props.center && 'align-items: center;'}
-  margin-left: 16px;
-  margin-right: 16px;
-`;
+import PageTitle from './PageTitle';
+import MainText from './MainText'
+import Red from './Red';
+import PageContent from './PageContent';
 
 const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 
-const InputScreen = ({ title, center, children }) => (
+const InputScreen = ({ title, children }) => (
   <div>
     <PageTitle>
       <StyledLink to="/">
         <Red>Lastcollage</Red>
       </StyledLink>
     </PageTitle>
-    {title && <MainText>{title}</MainText>}
-    <Container center={center}>{children}</Container>
+    <PageContent>
+      {title && <MainText>{title}</MainText>}
+      {children}
+    </PageContent>
   </div>
 );
 
 InputScreen.propTypes = {
   title: PropTypes.string,
-  center: PropTypes.bool,
   children: PropTypes.node,
 };
 
 InputScreen.defaultProps = {
   title: '',
-  center: false,
 };
 
 export default InputScreen;
