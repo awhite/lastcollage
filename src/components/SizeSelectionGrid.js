@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-import { red, darkRed } from '../styles/colors';
+import { red, darkRed, grey } from '../styles/colors';
 import { FlexCol, MainText, InfoBubble } from '../components';
+import { desktop } from 'util/breakpoints';
 
 const NOT_SELECTED = 0;
 const HOVER = 1;
@@ -13,15 +14,11 @@ const LARGE_COLLAGE_NUM_IMAGES = 200;
 
 const GRID_ROWS = 20;
 const GRID_COLS = GRID_ROWS;
-const cellWidth = `${100 / GRID_ROWS}%`;
 
-const GridSquareBase = styled.td`
+const GridSquareBase = styled.div`
   position: relative;
+  width: 100%;
   background-color: ${props => props.color};
-  border: 2px solid white;
-  border-radius: 4px;
-  min-width: ${cellWidth};
-  padding: 0 0 ${cellWidth};
 `;
 
 class GridSquare extends Component {
@@ -48,9 +45,9 @@ class GridSquare extends Component {
       case SELECTED_AND_HOVER:
         return mouseOnGrid ? darkRed : red;
       case HOVER:
-        return mouseOnGrid ? darkRed : 'transparent';
+        return mouseOnGrid ? darkRed : grey;
       default:
-        return 'transparent';
+        return grey;
     }
   };
 
@@ -64,13 +61,28 @@ class GridSquare extends Component {
   };
 }
 
-const SizeSelectionWrapper = styled.table`
-  max-width: 600px;
-  width: 100%;
-  border-collapse: collapse;
+const GridWrapper = styled.div`
+  background: white;
+  border: 2px solid white;
   margin-bottom: 36px;
   cursor: pointer;
   position: relative;
+`;
+
+const Grid = styled.div`
+  display: grid;
+  grid-gap: 2px;
+
+  grid-template-columns: repeat(${GRID_COLS}, ${305 / GRID_COLS}px);
+  grid-template-rows: repeat(${GRID_ROWS}, ${305 / GRID_COLS}px);
+  width: 343px;
+
+  ${desktop`
+    grid-template-columns: repeat(${GRID_COLS}, ${562 / GRID_COLS}px);
+    grid-template-rows: repeat(${GRID_ROWS}, ${562 / GRID_ROWS}px);
+    width: 600px;
+    height: 600px;
+  `}
 `;
 
 const Grey = styled.span`
@@ -113,10 +125,10 @@ class SizeSelectionGrid extends Component {
     return (
       <StyledCol>
         <MainText>{this.printSize()}</MainText>
-        <SizeSelectionWrapper onMouseOver={this.onMouseOver} onMouseLeave={this.onMouseLeave}>
-          <tbody>
+        <GridWrapper>
+          <Grid onMouseOver={this.onMouseOver} onMouseLeave={this.onMouseLeave}>
             {this.state.cells.map((row, rowNum) => (
-              <tr key={rowNum}>
+              <>
                 {row.map((selected, colNum) => (
                   <GridSquare
                     key={`${rowNum},${colNum}`}
@@ -126,10 +138,10 @@ class SizeSelectionGrid extends Component {
                     mouseOnGrid={this.state.mouseOn}
                   />
                 ))}
-              </tr>
+              </>
             ))}
-          </tbody>
-        </SizeSelectionWrapper>
+          </Grid>
+        </GridWrapper>
         {(isLarge || (this.state.mouseOn && isHoverLarge)) && <SlowDisclaimer />}
       </StyledCol>
     );
