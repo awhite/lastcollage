@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 import { red, darkRed, grey } from '../styles/colors';
 import { FlexCol, MainText, InfoBubble } from '../components';
-import { desktop } from 'util/breakpoints';
 
 const NOT_SELECTED = 0;
 const HOVER = 1;
@@ -16,9 +15,17 @@ const GRID_ROWS = 20;
 const GRID_COLS = GRID_ROWS;
 
 const GridSquareBase = styled.div`
+  flex: 1 0 auto;
   position: relative;
-  width: 100%;
   background-color: ${props => props.color};
+  border: 1px solid white;
+
+  ::after {
+    content: "";
+    float: left;
+    display: block;
+    padding-top: 100%;
+  }
 `;
 
 class GridSquare extends Component {
@@ -61,28 +68,19 @@ class GridSquare extends Component {
   };
 }
 
-const GridWrapper = styled.div`
-  background: white;
-  border: 2px solid white;
+const Grid = styled.div`
+  margin: 0 auto;
+  width: 90vw;
+  max-width: 600px;
+  height: 90vw;
+  max-height: 600px;
+  border: 1px solid white;
   margin-bottom: 36px;
   cursor: pointer;
-  position: relative;
 `;
 
-const Grid = styled.div`
-  display: grid;
-  grid-gap: 2px;
-
-  grid-template-columns: repeat(${GRID_COLS}, ${305 / GRID_COLS}px);
-  grid-template-rows: repeat(${GRID_ROWS}, ${305 / GRID_COLS}px);
-  width: 343px;
-
-  ${desktop`
-    grid-template-columns: repeat(${GRID_COLS}, ${562 / GRID_COLS}px);
-    grid-template-rows: repeat(${GRID_ROWS}, ${562 / GRID_ROWS}px);
-    width: 600px;
-    height: 600px;
-  `}
+const GridRow = styled.div`
+  display: flex;
 `;
 
 const Grey = styled.span`
@@ -125,23 +123,21 @@ class SizeSelectionGrid extends Component {
     return (
       <StyledCol>
         <MainText>{this.printSize()}</MainText>
-        <GridWrapper>
-          <Grid onMouseOver={this.onMouseOver} onMouseLeave={this.onMouseLeave}>
-            {this.state.cells.map((row, rowNum) => (
-              <>
-                {row.map((selected, colNum) => (
-                  <GridSquare
-                    key={`${rowNum},${colNum}`}
-                    onMouseEnter={() => this.onMouseEnterSquare(rowNum, colNum)}
-                    onClick={() => this.onClickSquare(rowNum, colNum)}
-                    selected={selected}
-                    mouseOnGrid={this.state.mouseOn}
-                  />
-                ))}
-              </>
-            ))}
-          </Grid>
-        </GridWrapper>
+        <Grid onMouseOver={this.onMouseOver} onMouseLeave={this.onMouseLeave}>
+          {this.state.cells.map((row, rowNum) => (
+            <GridRow key={`${rowNum}`}>
+              {row.map((selected, colNum) => (
+                <GridSquare
+                  key={`${rowNum},${colNum}`}
+                  onMouseEnter={() => this.onMouseEnterSquare(rowNum, colNum)}
+                  onClick={() => this.onClickSquare(rowNum, colNum)}
+                  selected={selected}
+                  mouseOnGrid={this.state.mouseOn}
+                />
+              ))}
+            </GridRow>
+          ))}
+        </Grid>
         {(isLarge || (this.state.mouseOn && isHoverLarge)) && <SlowDisclaimer />}
       </StyledCol>
     );
