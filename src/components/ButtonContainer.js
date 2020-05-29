@@ -29,7 +29,7 @@ const rowStyles = css`
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
   width: 100%;
   align-items: stretch;
 

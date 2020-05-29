@@ -6,7 +6,7 @@ import { SubText, FlexCol, Button, CollageDescription } from '.';
 import ButtonContainer from './ButtonContainer';
 
 const Container = styled(FlexCol)`
-  margin-top: 64px;
+  margin-top: 32px;
 `;
 
 const StyledButton = styled(Button)`

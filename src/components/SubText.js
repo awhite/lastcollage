@@ -8,7 +8,7 @@ export default styled.h5`
   strong {
     font-weight: bold;
   }
-  margin: 0 16px 20px;
+  margin: 0 0 16px;
 
   ${desktop`
     font-size: 1.5rem;
