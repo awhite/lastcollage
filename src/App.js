@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { ThemeProvider } from '@material-ui/core';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import { grey } from './styles/colors';
 import { theme } from './styles';
-import { Footer } from './components';
+import { Footer, WhatsNewModal } from './components';
 import {
   Welcome,
   EnterUsername,
@@ -25,16 +25,21 @@ const AppContainer = styled.div`
   margin: auto;
   background-color: ${grey};
   color: white;
-  padding-bottom: 103px;
+  padding-bottom: 135px;
 `;
 
 const Wrapper = styled.div`
   position: relative;
   min-height: 100vh;
-  overflow: auto;
+  overflow-y: auto;
 `;
 
 const App = () => {
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const showWhatsNew = () => setModalVisible(true);
+  const hideWhatsNew = () => setModalVisible(false);
+
   return (
     <ThemeProvider theme={theme}>
       <Wrapper>
@@ -53,7 +58,11 @@ const App = () => {
             </Switch>
           </BrowserRouter>
         </AppContainer>
-        <Footer />
+        <Footer onClickWhatsNew={e => {
+          e.preventDefault();
+          showWhatsNew();
+        }} />
+        <WhatsNewModal isOpen={isModalVisible} dismiss={hideWhatsNew} />
       </Wrapper>
     </ThemeProvider>
   );

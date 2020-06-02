@@ -1,0 +1,17 @@
+{
+  "title": "What's new?",
+  "releases": [
+    {
+      "versionCode": "0.4.0",
+      "dateMillis": 1591135116108,
+      "changes": [
+        {
+          "title": "Changelog",
+          "bullets": [
+            "Added the changelog that you're viewing now 👀"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -23,3 +23,6 @@ export { default as InfoBubble } from './InfoBubble';
 export { default as MaintenanceModeBubble } from './MaintenanceModeBubble';
 export { default as PageContent } from './PageContent';
 export { default as LoadingSpinner } from './LoadingSpinner';
+export { default as WhatsNewLink } from './WhatsNewLink';
+export { default as FooterLink } from './FooterLink';
+export { default as WhatsNewModal } from './WhatsNewModal';

@@ -19,3 +19,5 @@ export function validateParams({
     parseInt(colNum) > 20
   );
 }
+
+export const dateFormat = 'MMM D, YYYY';

@@ -1,6 +1,6 @@
 {
   "name": "lastcollage-client",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "Generates a collage of album artwork based on data from Last.fm",
   "main": "index.js",
   "repository": "git@github.com:awhite/lastcollage-cliient.git",
@@ -13,9 +13,11 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "classnames": "^2.2.6",
+    "moment": "^2.26.0",
     "node-sass": "^4.13.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-modal": "^3.11.2",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
@@ -28,7 +30,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "changelog": "node ./scripts/changelog.js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -51,6 +54,7 @@
     "@storybook/addons": "^5.3.18",
     "@storybook/preset-create-react-app": "^2.1.2",
     "@storybook/react": "^5.3.18",
-    "eslint": "^6.8.0"
+    "eslint": "^6.8.0",
+    "faker": "^4.1.0"
   }
 }

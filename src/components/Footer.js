@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Copyright from './Copyright';
 import DonateButton from './DonateButton';
+import WhatsNewLink from './WhatsNewLink';
 
 const Container = styled.div`
   display: flex;
@@ -16,9 +17,10 @@ const Container = styled.div`
   padding-top: 30px;
 `;
 
-const Footer = () => (
+const Footer = ({ onClickWhatsNew }) => (
   <Container>
     <DonateButton />
+    <WhatsNewLink onClick={onClickWhatsNew} />
     <Copyright />
   </Container>
 );

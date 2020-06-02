@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { lightGrey } from '../styles/colors';
+
 const Container = styled.div`
   font-weight: 500;
-  color: #aaa;
+  color: ${lightGrey};
   letter-spacing: 0.25px;
 `;
 
