@@ -4,29 +4,34 @@
   position: relative;
   max-width: 500px;
   max-height: 100%;
-  background-color: white;
+  background-color: #333;
+  color: white;
   margin: auto;
   border-radius: 4px;
 
+  box-shadow: 0 24px 38px 3px rgba(0,0,0,0.14), 0 9px 46px 8px rgba(0,0,0,0.12), 0 11px 15px -7px rgba(0,0,0,0.20);
+
   outline: none;
 
-  @media (min-width: 768px) {
 
-  }
 }
 
-.modal h1 {
+.modal h2 {
   margin-left: 24px;
 }
 
 .modal-overlay {
-  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .modal-body-open {

@@ -4,10 +4,11 @@ import Modal from 'react-modal';
 import moment from 'moment';
 
 import '../styles/Modal.css';
-import { red, lightGrey } from '../styles';
+import { lightGrey, lightRed } from '../styles';
 import { dateFormat } from '../util';
 import changelog from '../data/changelog.json';
 import Button from './Button';
+import Checkbox from './Checkbox';
 import { mobile } from 'util/breakpoints';
 
 Modal.setAppElement('#root');
@@ -27,7 +28,7 @@ const Release = ({ versionCode, dateMillis, changes }) => (
 );
 
 const ContentPanel = styled.div`
-  padding: 24px;
+  padding: 36px 24px;
   overflow-y: auto;
   flex: 1;
   border: 1px solid ${lightGrey};
@@ -39,7 +40,7 @@ const ContentPanel = styled.div`
   }
 
   h2 {
-    color: ${red};
+    color: ${lightRed};
     margin: 10px 0;
   }
 
@@ -52,23 +53,22 @@ const ContentPanel = styled.div`
   }
 `;
 
-const DoneButton = styled(Button).attrs({
-  children: 'Done',
-})`
-  margin: 24px;
-`;
-
 const ButtonPanel = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  padding: 16px 24px 24px;
 
   ${mobile`
     align-items: stretch;
   `}
 `;
 
-const WhatsNewModal = ({ isOpen, dismiss }) => (
+const StyledButton = styled(Button)`
+  margin-top: 16px;
+`;
+
+const WhatsNewModal = ({ isOpen, dismiss, showOnNewVersion, toggleShowOnNewVersion }) => (
   <Modal
     onRequestClose={dismiss}
     isOpen={isOpen}
@@ -77,14 +77,15 @@ const WhatsNewModal = ({ isOpen, dismiss }) => (
     overlayClassName="modal-overlay"
     bodyOpenClassName="modal-body-open"
   >
-    <h1>{changelog.title}</h1>
+    <h2>{changelog.title}</h2>
     <ContentPanel>
       {changelog.releases.reverse().map(release => (
         <Release key={release.versionCode} {...release} />
       ))}
     </ContentPanel>
     <ButtonPanel>
-      <DoneButton onClick={dismiss} />
+      <Checkbox checked={showOnNewVersion} onChange={toggleShowOnNewVersion} text="Show this dialog when Lastcollage updates" />
+      <StyledButton onClick={dismiss}>Done</StyledButton>
     </ButtonPanel>
   </Modal>
 );
