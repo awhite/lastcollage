@@ -1,18 +1,27 @@
 import React from 'react';
+import { useHistory, Redirect } from 'react-router-dom';
 
-import { InputScreen, Button } from '../components';
-import { types, getTypeFromKey } from '../lastfm';
-import { ColBackButton } from 'components/BackButton';
+import { InputScreen, Button, BackButton, ButtonContainer } from '../components';
+import { types } from '../lastfm';
 
-const SelectType = ({ navigation: { navigateNext, navigateBack } }) => {
-  const onSelectOption = key => {
-    navigateNext({ type: getTypeFromKey(key) });
-  };
+const SelectType = () => {
+
+  const history = useHistory();
+  const { location } = history;
+
+  if (!location.state) return (
+    <Redirect to="/" />
+  );
+
+  const onSelectOption = type => history.push('/timespan', { ...location.state, type });
 
   return (
-    <InputScreen title="Albums or Artists?">
-      {types.map(({ title }, index) => <Button key={title} onClick={() => onSelectOption(index + 1)}>{title}</Button>)}
-      <ColBackButton onClick={navigateBack} />
+    <InputScreen title="What kind of collage?" center>
+      <ButtonContainer>
+        {types.map(({ key, title }) => (
+          <Button key={key} onClick={() => onSelectOption(key)}>{title}</Button>))}
+        <BackButton onClick={() => history.goBack()} />
+      </ButtonContainer>
     </InputScreen>
   );
 };

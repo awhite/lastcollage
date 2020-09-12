@@ -13,7 +13,7 @@ const EnterUsername = () => {
 
   const onSelectOption = () => {
     if (!isFormFilled()) return;
-    history.push('/timespan', { username });
+    history.push('/type', { username });
   }
 
   useKeyButton(KEYCODE_ENTER, onSelectOption);

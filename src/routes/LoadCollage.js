@@ -49,7 +49,15 @@ const LoadCollage = () => {
       hideMissing,
     } = location.state;
     localStorage.setItem('username', username);
-    localStorage.setItem('period', period);
+    if (period.start) {
+      localStorage.removeItem('period');
+      localStorage.setItem('periodStart', period.start);
+      localStorage.setItem('periodEnd', period.end);
+    } else {
+      localStorage.setItem('period', period);
+      localStorage.removeItem('periodStart');
+      localStorage.removeItem('periodEnd');
+    }
     localStorage.setItem('rowNum', rowNum);
     localStorage.setItem('colNum', colNum);
     localStorage.setItem('type', type);

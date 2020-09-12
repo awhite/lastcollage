@@ -16,7 +16,7 @@ const Generate = () => {
   const onSelectOption = key => {
     switch (key) {
       case KEY_ENTER:
-        history.push('/load', { ...location.state, type: 'albums' });
+        history.push('/load', { ...location.state });
         break;
       default:
         throw new Error(`Unsupported option ${key}`);

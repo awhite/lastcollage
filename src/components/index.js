@@ -26,3 +26,5 @@ export { default as LoadingSpinner } from './LoadingSpinner';
 export { default as WhatsNewLink } from './WhatsNewLink';
 export { default as FooterLink } from './FooterLink';
 export { default as WhatsNewModal } from './WhatsNewModal';
+export { default as DateRangePicker } from './DateRangePicker';
+export { default as ExpandableButton } from './ExpandableButton';

@@ -3,6 +3,8 @@ import { useHistory, Redirect } from 'react-router-dom';
 
 import { InputScreen, Error, ResultDescription, Button, ButtonContainer } from '../components';
 import styled from 'styled-components';
+import { isPeriodInterval } from '../lastfm';
+import { formatUnixForFile } from '../util';
 
 const CollageImg = styled.img`
   width: 100%;
@@ -43,7 +45,11 @@ const ShowCollage = () => {
 
   const generateFilename = () => {
     const { type, rowNum, colNum, period } = location.state;
-    return `collage_${type}_${colNum}x${rowNum}_${period}.png`;
+    let periodStr = period;
+    if (isPeriodInterval(period)) {
+      periodStr = `${formatUnixForFile(period.start)}_${formatUnixForFile(period.end)}`;
+    }
+    return `collage_${type}_${colNum}x${rowNum}_${periodStr}.png`;
   };
 
   const startOver = () => {

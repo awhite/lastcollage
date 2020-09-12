@@ -6,7 +6,9 @@
   "repository": "git@github.com:awhite/lastcollage-cliient.git",
   "author": "Alex White <awhite4096@gmail.com>",
   "dependencies": {
+    "@date-io/moment": "1.x",
     "@material-ui/core": "^4.9.10",
+    "@material-ui/pickers": "^3.2.10",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -16,6 +18,7 @@
     "moment": "^2.26.0",
     "node-sass": "^4.13.1",
     "react": "^16.13.1",
+    "react-collapse": "^5.0.1",
     "react-dom": "^16.13.1",
     "react-modal": "^3.11.2",
     "react-redux": "^7.2.0",

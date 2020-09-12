@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { ThemeProvider } from '@material-ui/core';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import MomentUtils from '@date-io/moment';
 
 import { grey } from './styles/colors';
 import { theme } from './styles';
@@ -11,6 +13,7 @@ import {
   EnterUsername,
   SelectTimespan,
   SelectSize,
+  SelectType,
   SelectNameOverlay,
   SelectHideMissing,
   Generate,
@@ -64,33 +67,36 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Wrapper>
-        <AppContainer>
-          <BrowserRouter>
-            <Switch>
-              <Route path="/username"><EnterUsername /></Route>
-              <Route path="/timespan"><SelectTimespan /></Route>
-              <Route path="/size"><SelectSize /></Route>
-              <Route path="/overlay"><SelectNameOverlay /></Route>
-              <Route path="/hideMissing"><SelectHideMissing /></Route>
-              <Route path="/generate"><Generate /></Route>
-              <Route path="/load"><LoadCollage /></Route>
-              <Route path="/collage"><ShowCollage /></Route>
-              <Route path="/"><Welcome /></Route>
-            </Switch>
-          </BrowserRouter>
-        </AppContainer>
-        <Footer onClickWhatsNew={e => {
-          e.preventDefault();
-          showWhatsNew();
-        }} />
-        <WhatsNewModal
-          isOpen={isModalVisible}
-          dismiss={hideWhatsNew}
-          showOnNewVersion={showOnNewVersion}
-          toggleShowOnNewVersion={toggleShowOnNewVersion}
-        />
-      </Wrapper>
+      <MuiPickersUtilsProvider utils={MomentUtils}>
+        <Wrapper>
+          <AppContainer>
+            <BrowserRouter>
+              <Switch>
+                <Route path="/username"><EnterUsername /></Route>
+                <Route path="/type"><SelectType /></Route>
+                <Route path="/timespan"><SelectTimespan /></Route>
+                <Route path="/size"><SelectSize /></Route>
+                <Route path="/overlay"><SelectNameOverlay /></Route>
+                <Route path="/hideMissing"><SelectHideMissing /></Route>
+                <Route path="/generate"><Generate /></Route>
+                <Route path="/load"><LoadCollage /></Route>
+                <Route path="/collage"><ShowCollage /></Route>
+                <Route path="/"><Welcome /></Route>
+              </Switch>
+            </BrowserRouter>
+          </AppContainer>
+          <Footer onClickWhatsNew={e => {
+            e.preventDefault();
+            showWhatsNew();
+          }} />
+          <WhatsNewModal
+            isOpen={isModalVisible}
+            dismiss={hideWhatsNew}
+            showOnNewVersion={showOnNewVersion}
+            toggleShowOnNewVersion={toggleShowOnNewVersion}
+          />
+        </Wrapper>
+      </MuiPickersUtilsProvider>
     </ThemeProvider>
   );
 }

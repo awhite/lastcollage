@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import { periods, types } from '../lastfm';
 import InfoBubble from './InfoBubble';
+import { formatUnix } from '../util';
 
 const Container = styled(InfoBubble)`
   margin-bottom: 48px;
@@ -16,18 +17,27 @@ const ResultDescription = ({ navigationParams: {
   colNum,
   type,
 } }) => {
-  const periodName = periods.find(({ key }) => key === period).title.toLowerCase();
   const typeName = types.find(({ key }) => key === type).title.toLowerCase();
   const dimensions = `${colNum} x ${rowNum}`;
   const forever = period === 'forever';
+  const interval = typeof (period) === 'object';
+  const renderPeriodText = () => {
+    if (interval) {
+      return (
+        <> from <strong>{formatUnix(period.start)}</strong> to <strong>{formatUnix(period.end)}</strong></>
+      );
+    } else if (!forever) {
+      return (
+        <> in the past <strong>{periods.find(({ key }) => key === period).title.toLowerCase()}</strong></>
+      );
+    }
+  }
 
   return (
     <Container>
       <span>
         <strong>{dimensions}</strong> collage of top <strong>{typeName}</strong> for <strong>{username}</strong>
-        {!forever && (
-          <> in the past <strong>{periodName}</strong></>
-        )}
+        {renderPeriodText()}
       </span>
     </Container>
   );

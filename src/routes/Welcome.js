@@ -19,13 +19,18 @@ const Welcome = ({ isMaintenanceMode }) => {
   const [lastCollageInfo, setLastCollageInfo] = useState(null);
 
   useEffect(() => {
-    const username = localStorage.getItem("username");
-    const period = localStorage.getItem("period");
-    const rowNum = localStorage.getItem("rowNum");
-    const colNum = localStorage.getItem("colNum");
-    const type = localStorage.getItem("type");
-    const showName = localStorage.getItem("showName");
-    const hideMissing = localStorage.getItem("hideMissing");
+    const username = localStorage.getItem('username');
+    let period = localStorage.getItem('period');
+    const start = localStorage.getItem('periodStart');
+    const end = localStorage.getItem('periodEnd');
+    if (start) {
+      period = { start, end };
+    }
+    const rowNum = localStorage.getItem('rowNum');
+    const colNum = localStorage.getItem('colNum');
+    const type = localStorage.getItem('type');
+    const showName = localStorage.getItem('showName');
+    const hideMissing = localStorage.getItem('hideMissing');
 
     const params = {
       username,

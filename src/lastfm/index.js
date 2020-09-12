@@ -12,9 +12,16 @@ export function getPeriodFromKey(key) {
   return periods[index].key;
 }
 
-export const types = [{ key: 'albums', title: 'Albums' }, { key: 'artists', title: 'Artists' }];
+export const TYPE_ALBUMS = 'albums';
+export const TYPE_ARTISTS = 'artists';
+export const TYPE_TRACKS = 'tracks';
 
-export function getTypeFromKey(key) {
-  const index = parseInt(key) - 1;
-  return types[index].key;
+export const types = [
+  { key: TYPE_ALBUMS, title: 'Albums' },
+  { key: TYPE_ARTISTS, title: 'Artists' },
+  { key: TYPE_TRACKS, title: 'Tracks' },
+];
+
+export function isPeriodInterval(period) {
+  return typeof period === 'object';
 }
