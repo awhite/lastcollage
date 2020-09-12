@@ -79,7 +79,7 @@ const WhatsNewModal = ({ isOpen, dismiss, showOnNewVersion, toggleShowOnNewVersi
   >
     <h2>{changelog.title}</h2>
     <ContentPanel>
-      {changelog.releases.reverse().map(release => (
+      {[...changelog.releases].reverse().map(release => (
         <Release key={release.versionCode} {...release} />
       ))}
     </ContentPanel>

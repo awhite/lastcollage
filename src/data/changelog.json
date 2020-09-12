@@ -12,6 +12,31 @@
           ]
         }
       ]
+    },
+    {
+      "versionCode": "1.0.0",
+      "dateMillis": 1599945423453,
+      "changes": [
+        {
+          "title": "Custom date ranges",
+          "bullets": [
+            "Added support for choosing a custom range of dates"
+          ]
+        },
+        {
+          "title": "Artist/track collages",
+          "bullets": [
+            "Added support for collages of artist images",
+            "Added support for collages of track/single covers"
+          ]
+        },
+        {
+          "title": "Bug fixes",
+          "bullets": [
+            "Fixed an issue with generating multiple collages containing the same image at the same time"
+          ]
+        }
+      ]
     }
   ]
 }
