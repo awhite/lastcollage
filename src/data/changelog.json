@@ -37,6 +37,18 @@
           ]
         }
       ]
+    },
+    {
+      "versionCode": "1.0.1",
+      "dateMillis": 1609382926604,
+      "changes": [
+        {
+          "title": "Bug fixes",
+          "bullets": [
+            "Fixed 20x20 generation for some accounts"
+          ]
+        }
+      ]
     }
   ]
 }
