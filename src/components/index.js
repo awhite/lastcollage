@@ -11,6 +11,7 @@ export { default as MainText } from './MainText';
 export { default as SubText } from './SubText';
 export { default as MainInput } from './MainInput';
 export { default as PageTitle } from './PageTitle';
+export { default as PageContainer } from './PageContainer';
 export { default as Red } from './Red';
 export { default as InputScreen } from './InputScreen';
 export { default as SizeSelectionGrid } from './SizeSelectionGrid';

@@ -49,6 +49,30 @@
           ]
         }
       ]
+    },
+    {
+      "versionCode": "1.1.0",
+      "dateMillis": 1630908280244,
+      "changes": [
+        {
+          "title": "User Feedback",
+          "bullets": [
+            "Added feedback form"
+          ]
+        },
+        {
+          "title": "New donation partners",
+          "bullets": [
+            "Added Venmo and Cash App donation buttons"
+          ]
+        },
+        {
+          "title": "UI tweaks",
+          "bullets": [
+            "Darkened box around main content area"
+          ]
+        }
+      ]
     }
   ]
 }

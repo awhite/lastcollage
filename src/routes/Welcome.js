@@ -15,7 +15,6 @@ import {
 import { validateParams } from '../util';
 
 const Welcome = ({ isMaintenanceMode }) => {
-
   const [lastCollageInfo, setLastCollageInfo] = useState(null);
 
   useEffect(() => {
@@ -54,23 +53,22 @@ const Welcome = ({ isMaintenanceMode }) => {
   };
 
   return (
-    <div>
+    <>
       <PageTitle>
         Welcome to <Red>Lastcollage</Red>
       </PageTitle>
       <PageContent>
         <MainText>
-          Generate a collage from your <Link href="https://www.last.fm/">Last.fm</Link> scrobbles
+          Generate a collage from your{' '}
+          <Link href="https://www.last.fm/">Last.fm</Link> scrobbles
         </MainText>
-        {isMaintenanceMode && (
-          <MaintenanceModeBubble />
-        )}
+        {isMaintenanceMode && <MaintenanceModeBubble />}
         <ButtonContainer>
           <Button onClick={getStarted}>Get started</Button>
         </ButtonContainer>
         {lastCollageInfo && <RegenerateLastCollage info={lastCollageInfo} />}
       </PageContent>
-    </div>
+    </>
   );
 };
 
