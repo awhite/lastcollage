@@ -16,7 +16,7 @@
     "bootstrap": "^4.4.1",
     "classnames": "^2.2.6",
     "moment": "^2.26.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "react": "^16.13.1",
     "react-collapse": "^5.0.1",
     "react-dom": "^16.13.1",
