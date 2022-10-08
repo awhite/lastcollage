@@ -1,9 +1,9 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from 'react'
+import styled from 'styled-components'
 
-import payPal from '../assets/paypal.svg';
-import cashApp from '../assets/cash_app.svg';
-import venmo from '../assets/venmo.svg';
+import payPal from '../assets/paypal.svg'
+import cashApp from '../assets/cash_app.svg'
+import venmo from '../assets/venmo.svg'
 
 const Container = styled.div`
   display: flex;
@@ -11,7 +11,7 @@ const Container = styled.div`
   align-items: flex-end;
   grid-column: 2 / 2;
   grid-row: 2 / 2;
-`;
+`
 
 const DonateBoxUl = styled.ul`
   padding: 1em;
@@ -41,7 +41,7 @@ const DonateBoxUl = styled.ul`
   & li:hover {
     transform: scale(1.2);
   }
-`;
+`
 
 const DonateBox = () => (
   <Container>
@@ -63,6 +63,6 @@ const DonateBox = () => (
       </li>
     </DonateBoxUl>
   </Container>
-);
+)
 
-export default DonateBox;
+export default DonateBox

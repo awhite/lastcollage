@@ -7,9 +7,7 @@
       "changes": [
         {
           "title": "Changelog",
-          "bullets": [
-            "Added the changelog that you're viewing now 👀"
-          ]
+          "bullets": ["Added the changelog that you're viewing now 👀"]
         }
       ]
     },
@@ -19,9 +17,7 @@
       "changes": [
         {
           "title": "Custom date ranges",
-          "bullets": [
-            "Added support for choosing a custom range of dates"
-          ]
+          "bullets": ["Added support for choosing a custom range of dates"]
         },
         {
           "title": "Artist/track collages",
@@ -32,9 +28,7 @@
         },
         {
           "title": "Bug fixes",
-          "bullets": [
-            "Fixed an issue with generating multiple collages containing the same image at the same time"
-          ]
+          "bullets": ["Fixed an issue with generating multiple collages containing the same image at the same time"]
         }
       ]
     },
@@ -44,9 +38,7 @@
       "changes": [
         {
           "title": "Bug fixes",
-          "bullets": [
-            "Fixed 20x20 generation for some accounts"
-          ]
+          "bullets": ["Fixed 20x20 generation for some accounts"]
         }
       ]
     },
@@ -56,21 +48,15 @@
       "changes": [
         {
           "title": "User Feedback",
-          "bullets": [
-            "Added feedback form"
-          ]
+          "bullets": ["Added feedback form"]
         },
         {
           "title": "New donation partners",
-          "bullets": [
-            "Added Venmo and Cash App donation buttons"
-          ]
+          "bullets": ["Added Venmo and Cash App donation buttons"]
         },
         {
           "title": "UI tweaks",
-          "bullets": [
-            "Darkened box around main content area"
-          ]
+          "bullets": ["Darkened box around main content area"]
         }
       ]
     }

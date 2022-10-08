@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
-import { lightGrey } from '../styles/colors';
+import { lightGrey } from '../styles/colors'
 
 export default styled.a`
   color: ${lightGrey};
@@ -10,4 +10,4 @@ export default styled.a`
   :hover {
     color: white;
   }
-`;
+`

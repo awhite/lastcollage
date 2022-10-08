@@ -1,31 +1,35 @@
-import React, { Fragment } from 'react';
-import styled from 'styled-components';
-import Modal from 'react-modal';
-import moment from 'moment';
+import React, { Fragment } from 'react'
+import styled from 'styled-components'
+import Modal from 'react-modal'
+import moment from 'moment'
 
-import '../styles/Modal.css';
-import { lightGrey, lightRed } from '../styles';
-import { dateFormat } from '../util';
-import changelog from '../data/changelog.json';
-import Button from './Button';
-import Checkbox from './Checkbox';
-import { mobile } from 'util/breakpoints';
+import '../styles/Modal.css'
+import { lightGrey, lightRed } from '../styles'
+import { dateFormat } from '../util'
+import changelog from '../data/changelog.json'
+import Button from './Button'
+import Checkbox from './Checkbox'
+import { mobile } from 'util/breakpoints'
 
-Modal.setAppElement('#root');
+Modal.setAppElement('#root')
 
 const Release = ({ versionCode, dateMillis, changes }) => (
   <div>
-    <h2>{versionCode} ({moment.utc(dateMillis).format(dateFormat)})</h2>
+    <h2>
+      {versionCode} ({moment.utc(dateMillis).format(dateFormat)})
+    </h2>
     {changes.map(({ title, bullets }) => (
       <Fragment key={title}>
         <h4>{title}</h4>
         <ul>
-          {bullets.map(bullet => <li key={bullet}>{bullet}</li>)}
+          {bullets.map((bullet) => (
+            <li key={bullet}>{bullet}</li>
+          ))}
         </ul>
       </Fragment>
     ))}
   </div>
-);
+)
 
 const ContentPanel = styled.div`
   padding: 36px 24px;
@@ -51,7 +55,7 @@ const ContentPanel = styled.div`
   ul {
     margin: 8px 0;
   }
-`;
+`
 
 const ButtonPanel = styled.div`
   display: flex;
@@ -62,11 +66,11 @@ const ButtonPanel = styled.div`
   ${mobile`
     align-items: stretch;
   `}
-`;
+`
 
 const StyledButton = styled(Button)`
   margin-top: 16px;
-`;
+`
 
 const WhatsNewModal = ({ isOpen, dismiss, showOnNewVersion, toggleShowOnNewVersion }) => (
   <Modal
@@ -79,15 +83,19 @@ const WhatsNewModal = ({ isOpen, dismiss, showOnNewVersion, toggleShowOnNewVersi
   >
     <h2>{changelog.title}</h2>
     <ContentPanel>
-      {[...changelog.releases].reverse().map(release => (
+      {[...changelog.releases].reverse().map((release) => (
         <Release key={release.versionCode} {...release} />
       ))}
     </ContentPanel>
     <ButtonPanel>
-      <Checkbox checked={showOnNewVersion} onChange={toggleShowOnNewVersion} text="Show this dialog when Lastcollage updates" />
+      <Checkbox
+        checked={showOnNewVersion}
+        onChange={toggleShowOnNewVersion}
+        text="Show this dialog when Lastcollage updates"
+      />
       <StyledButton onClick={dismiss}>Done</StyledButton>
     </ButtonPanel>
   </Modal>
-);
+)
 
-export default WhatsNewModal;
+export default WhatsNewModal

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect } from 'react'
 
 /**
  *
@@ -6,14 +6,14 @@ import { useEffect } from 'react';
  * @param {function} handleKeyPress Handler for keypress event
  */
 export default (keyCode, handleKeyPress) => {
-  const onKeyPress = key => {
+  const onKeyPress = (key) => {
     if (keyCode === key.keyCode) {
-      handleKeyPress();
+      handleKeyPress()
     }
-  };
+  }
 
   useEffect(() => {
-    document.addEventListener('keypress', onKeyPress);
-    return () => document.removeEventListener('keypress', onKeyPress);
-  });
-};
+    document.addEventListener('keypress', onKeyPress)
+    return () => document.removeEventListener('keypress', onKeyPress)
+  })
+}

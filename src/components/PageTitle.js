@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { desktop } from '../util/breakpoints';
+import styled from 'styled-components'
+import { desktop } from '../util/breakpoints'
 
 export default styled.h1`
   margin: 36px;
@@ -10,4 +10,4 @@ export default styled.h1`
     margin: 48px;
     font-size: 3.5rem;
   `}
-`;
+`

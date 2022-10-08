@@ -1,37 +1,37 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
+import React, { Component } from 'react'
+import styled from 'styled-components'
 
-import { red, darkRed, grey } from '../styles/colors';
-import { FlexCol, MainText, InfoBubble } from '../components';
+import { red, darkRed, grey } from '../styles/colors'
+import { FlexCol, MainText, InfoBubble } from '../components'
 
-const NOT_SELECTED = 0;
-const HOVER = 1;
-const SELECTED = 2;
-const SELECTED_AND_HOVER = 3;
+const NOT_SELECTED = 0
+const HOVER = 1
+const SELECTED = 2
+const SELECTED_AND_HOVER = 3
 
-const LARGE_COLLAGE_NUM_IMAGES = 200;
+const LARGE_COLLAGE_NUM_IMAGES = 200
 
-const GRID_ROWS = 20;
-const GRID_COLS = GRID_ROWS;
+const GRID_ROWS = 20
+const GRID_COLS = GRID_ROWS
 
 const GridSquareBase = styled.div`
   flex: 1 0 auto;
   position: relative;
-  background-color: ${props => props.color};
+  background-color: ${(props) => props.color};
   border: 1px solid white;
 
   ::after {
-    content: "";
+    content: '';
     float: left;
     display: block;
     padding-top: 100%;
   }
-`;
+`
 
 class GridSquare extends Component {
   state = {
     mouseOn: false,
-  };
+  }
 
   render() {
     return (
@@ -41,31 +41,31 @@ class GridSquare extends Component {
         onMouseLeave={this.onMouseLeave}
         color={this.getColor()}
       />
-    );
+    )
   }
 
   getColor = () => {
-    const { selected, mouseOnGrid } = this.props;
+    const { selected, mouseOnGrid } = this.props
     switch (selected) {
       case SELECTED:
-        return red;
+        return red
       case SELECTED_AND_HOVER:
-        return mouseOnGrid ? darkRed : red;
+        return mouseOnGrid ? darkRed : red
       case HOVER:
-        return mouseOnGrid ? darkRed : grey;
+        return mouseOnGrid ? darkRed : grey
       default:
-        return grey;
+        return grey
     }
-  };
+  }
 
   onMouseEnter = () => {
-    this.props.onMouseEnter();
-    this.setState({ mouseOn: true });
-  };
+    this.props.onMouseEnter()
+    this.setState({ mouseOn: true })
+  }
 
   onMouseLeave = () => {
-    this.setState({ mouseOn: false });
-  };
+    this.setState({ mouseOn: false })
+  }
 }
 
 const Grid = styled.div`
@@ -77,25 +77,25 @@ const Grid = styled.div`
   border: 1px solid white;
   margin-bottom: 36px;
   cursor: pointer;
-`;
+`
 
 const GridRow = styled.div`
   display: flex;
-`;
+`
 
 const Grey = styled.span`
   color: grey;
-`;
+`
 
 const StyledCol = styled(FlexCol)`
   align-self: stretch;
-`;
+`
 
 const SlowDisclaimer = styled(({ className }) => (
   <InfoBubble className={className}>Large collages can take up to 3 minutes to generate</InfoBubble>
 ))`
   margin: 0 0 32px 0;
-`;
+`
 
 class SizeSelectionGrid extends Component {
   state = {
@@ -105,20 +105,20 @@ class SizeSelectionGrid extends Component {
     mouseY: 0,
     bottomRight: { row: -1, col: -1 },
     hoverBottomRight: { row: -1, col: -1 },
-  };
+  }
 
   render() {
     const isLarge = (() => {
-      const { bottomRight } = this.state;
-      const count = (bottomRight.col + 1) * (bottomRight.row + 1);
-      return count >= LARGE_COLLAGE_NUM_IMAGES;
-    })();
+      const { bottomRight } = this.state
+      const count = (bottomRight.col + 1) * (bottomRight.row + 1)
+      return count >= LARGE_COLLAGE_NUM_IMAGES
+    })()
 
     const isHoverLarge = (() => {
-      const { hoverBottomRight } = this.state;
-      const count = (hoverBottomRight.col + 1) * (hoverBottomRight.row + 1);
-      return count >= LARGE_COLLAGE_NUM_IMAGES;
-    })();
+      const { hoverBottomRight } = this.state
+      const count = (hoverBottomRight.col + 1) * (hoverBottomRight.row + 1)
+      return count >= LARGE_COLLAGE_NUM_IMAGES
+    })()
 
     return (
       <StyledCol>
@@ -140,85 +140,78 @@ class SizeSelectionGrid extends Component {
         </Grid>
         {(isLarge || (this.state.mouseOn && isHoverLarge)) && <SlowDisclaimer />}
       </StyledCol>
-    );
+    )
   }
 
-  getBottomRight = () =>
-    this.state.mouseOn ? this.state.hoverBottomRight : this.state.bottomRight;
+  getBottomRight = () => (this.state.mouseOn ? this.state.hoverBottomRight : this.state.bottomRight)
 
   getSizeHeadingFromBottomRight = (bottomRight = this.state.bottomRight) => {
-    const cols = bottomRight.col + 1;
-    const rows = bottomRight.row + 1;
-    return `${cols} x ${rows}`;
-  };
+    const cols = bottomRight.col + 1
+    const rows = bottomRight.row + 1
+    return `${cols} x ${rows}`
+  }
 
   printSize = () => {
-    const selectedSize = this.getSizeHeadingFromBottomRight();
-    const hoverSize = <Grey>{this.getSizeHeadingFromBottomRight(this.state.hoverBottomRight)}</Grey>;
+    const selectedSize = this.getSizeHeadingFromBottomRight()
+    const hoverSize = <Grey>{this.getSizeHeadingFromBottomRight(this.state.hoverBottomRight)}</Grey>
     if (!this.state.mouseOn) {
-      return selectedSize;
+      return selectedSize
     }
     if (this.props.sizeSelected) {
       if (this.hoveringOverSelected()) {
-        return selectedSize;
+        return selectedSize
       }
       return (
         <span>
           {selectedSize} <Grey>({hoverSize})</Grey>
         </span>
-      );
+      )
     }
-    return hoverSize;
-  };
+    return hoverSize
+  }
 
-  onMouseOver = () => this.setState({ mouseOn: true });
+  onMouseOver = () => this.setState({ mouseOn: true })
 
-  onMouseLeave = () => this.setState({ mouseOn: false });
+  onMouseLeave = () => this.setState({ mouseOn: false })
 
   onMouseEnterSquare = (newRow, newCol) => {
-    const selectedRow = this.state.bottomRight.row;
-    const selectedCol = this.state.bottomRight.col;
+    const selectedRow = this.state.bottomRight.row
+    const selectedCol = this.state.bottomRight.col
     this.setState({
       cells: this.state.cells.map((row, rowNum) =>
         row.map((selected, colNum) => {
           if (selected === SELECTED || selected === SELECTED_AND_HOVER) {
             if (rowNum <= newRow && colNum <= newCol) {
-              if (
-                selectedRow < newRow ||
-                selectedCol < newCol ||
-                (selectedRow === newRow && selectedCol === newCol)
-              ) {
-                return SELECTED;
+              if (selectedRow < newRow || selectedCol < newCol || (selectedRow === newRow && selectedCol === newCol)) {
+                return SELECTED
               }
-              return SELECTED_AND_HOVER;
+              return SELECTED_AND_HOVER
             }
-            return SELECTED;
+            return SELECTED
           }
-          return rowNum <= newRow && colNum <= newCol ? HOVER : NOT_SELECTED;
-        }),
+          return rowNum <= newRow && colNum <= newCol ? HOVER : NOT_SELECTED
+        })
       ),
       hoverBottomRight: { row: newRow, col: newCol },
-    });
-  };
+    })
+  }
 
   onClickSquare = (newRow, newCol) => {
     this.setState({
       cells: this.state.cells.map((row, rowNum) =>
-        row.map((_, colNum) =>
-          rowNum <= newRow && colNum <= newCol ? SELECTED : NOT_SELECTED,
-        ),
+        row.map((_, colNum) => (rowNum <= newRow && colNum <= newCol ? SELECTED : NOT_SELECTED))
       ),
       bottomRight: { row: newRow, col: newCol },
-    });
-    this.props.onSelectGridSize(newRow + 1, newCol + 1);
-  };
+    })
+    this.props.onSelectGridSize(newRow + 1, newCol + 1)
+  }
 
   hoveringOverSelected = () => {
     return (
       this.state.bottomRight.row === this.state.hoverBottomRight.row &&
       this.state.bottomRight.col === this.state.hoverBottomRight.col
-    );
-  };
+    )
+  }
 }
 
-export default SizeSelectionGrid;
+export default SizeSelectionGrid

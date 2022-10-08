@@ -1,16 +1,18 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from 'react'
+import styled from 'styled-components'
 
-import { red, dimRed, darkRed } from '../styles';
+import { red, dimRed, darkRed } from '../styles'
 
-export default styled(({ className, outlined, disabled, isExpanded, ...otherProps }) => <button className={className} disabled={disabled} {...otherProps} />)`
+export default styled(({ className, outlined, disabled, isExpanded, ...otherProps }) => (
+  <button className={className} disabled={disabled} {...otherProps} />
+))`
   text-transform: none;
   font-size: 1.15rem;
   min-width: 180px;
   padding: 16px;
   cursor: pointer;
 
-  ${props =>
+  ${(props) =>
     props.outlined
       ? `
   background-color: transparent;
@@ -59,4 +61,4 @@ export default styled(({ className, outlined, disabled, isExpanded, ...otherProp
     cursor: default;
     box-shadow: none;
   }
-`;
+`

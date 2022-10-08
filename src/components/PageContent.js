@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
-import { desktop } from '../util/breakpoints';
+import { desktop } from '../util/breakpoints'
 
 const PageContent = styled.div`
   display: flex;
@@ -10,6 +10,6 @@ const PageContent = styled.div`
   `}
   margin-left: 16px;
   margin-right: 16px;
-`;
+`
 
-export default PageContent;
+export default PageContent

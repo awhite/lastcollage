@@ -1,6 +1,6 @@
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles'
 
-export * from './colors';
+export * from './colors'
 
 export const theme = createMuiTheme({
   palette: {
@@ -30,12 +30,12 @@ export const theme = createMuiTheme({
         color: 'white',
         paddingBottom: 8,
         fontFamily: 'Manrope',
-      }
+      },
     },
     MuiOutlinedInput: {
       adornedStart: {
         maxWidth: 180,
-      }
-    }
-  }
-});
+      },
+    },
+  },
+})

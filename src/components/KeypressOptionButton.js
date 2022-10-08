@@ -1,29 +1,29 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
-import { red } from '../styles/colors';
-import Button from './Button';
+import React, { Component } from 'react'
+import styled from 'styled-components'
+import { red } from '../styles/colors'
+import Button from './Button'
 
 const Option = styled.div`
   margin-bottom: 20px;
   display: flex;
   flex-direction: row;
   align-items: center;
-`;
+`
 
 const OptionButtonBase = styled(Button)`
   margin-bottom: 0;
-`;
+`
 
-const OptionButton = props => <OptionButtonBase {...props} variant="contained" />;
+const OptionButton = (props) => <OptionButtonBase {...props} variant="contained" />
 
 const Letter = styled.div`
   position: relative;
-  ${props =>
+  ${(props) =>
     props.active
       ? 'animation: fadeIn 300ms forwards;'
       : props.haveHovered
-        ? `animation: ${props.hover ? 'fadeIn' : 'fadeOut'} 300ms forwards`
-        : 'border-color: grey'};
+      ? `animation: ${props.hover ? 'fadeIn' : 'fadeOut'} 300ms forwards`
+      : 'border-color: grey'};
   @keyframes fadeIn {
     0% {
       border-color: grey;
@@ -59,62 +59,58 @@ const Letter = styled.div`
   & > span {
     color: white;
   }
-`;
+`
 
 const Lens = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
   background-color: transparent;
-`;
+`
 
 export default class KeypressOptionButton extends Component {
   state = {
     hover: false,
     haveHovered: false,
     active: false,
-  };
+  }
 
-  onMouseEnter = e => {
-    if (this.props.disabled) return;
-    this.setState({ hover: true, haveHovered: true });
-  };
+  onMouseEnter = (e) => {
+    if (this.props.disabled) return
+    this.setState({ hover: true, haveHovered: true })
+  }
 
-  onMouseLeave = e => {
-    if (this.props.disabled) return;
-    this.setState({ hover: false });
-  };
+  onMouseLeave = (e) => {
+    if (this.props.disabled) return
+    this.setState({ hover: false })
+  }
 
-  activateLetter = () => this.setState({ active: true });
+  activateLetter = () => this.setState({ active: true })
 
   simulateClick = () => {
     return new Promise((resolve, reject) => {
       if (this.props.disabled) {
-        reject();
+        reject()
       } else {
-        this.focusVisible();
-        this.activateLetter();
+        this.focusVisible()
+        this.activateLetter()
         setTimeout(() => {
-          resolve();
-        }, 150);
+          resolve()
+        }, 150)
       }
-    });
-  };
+    })
+  }
 
   onClick = () => {
-    this.props.onClick();
-    this.activateLetter();
-  };
+    this.props.onClick()
+    this.activateLetter()
+  }
 
   render() {
     return (
       <Option>
         {this.props.disabled || (
-          <Letter
-            haveHovered={this.state.haveHovered}
-            hover={this.state.hover}
-            active={this.state.active}
-          >
+          <Letter haveHovered={this.state.haveHovered} hover={this.state.hover} active={this.state.active}>
             <span>{this.getKeyLabel()}</span>
             <Lens />
           </Letter>
@@ -123,24 +119,24 @@ export default class KeypressOptionButton extends Component {
           onMouseEnter={this.onMouseEnter}
           onMouseLeave={this.onMouseLeave}
           onClick={this.onClick}
-          action={actions => {
-            console.log(actions);
-            return (this.focusVisible = actions.focusVisible);
+          action={(actions) => {
+            console.log(actions)
+            return (this.focusVisible = actions.focusVisible)
           }}
           disabled={this.props.disabled}
         >
           <span>{this.props.title}</span>
         </OptionButton>
       </Option>
-    );
+    )
   }
 
   getKeyLabel = () => {
     switch (this.props.keyChar) {
       case 'Enter':
-        return String.fromCharCode(0x21b5);
+        return String.fromCharCode(0x21b5)
       default:
-        return this.props.keyChar.toUpperCase();
+        return this.props.keyChar.toUpperCase()
     }
-  };
+  }
 }

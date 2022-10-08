@@ -1,12 +1,12 @@
-import React from 'react';
+import React from 'react'
 
-import FlexCol from './FlexCol';
-import KeypressOptionButton from './KeypressOptionButton';
+import FlexCol from './FlexCol'
+import KeypressOptionButton from './KeypressOptionButton'
 
 export default ({ options, ordered }) => {
   if (ordered) {
-    let i = 1;
-    options = options.map(title => ({ key: `${i++}`, title }));
+    let i = 1
+    options = options.map((title) => ({ key: `${i++}`, title }))
   }
 
   return (
@@ -21,5 +21,5 @@ export default ({ options, ordered }) => {
         />
       ))}
     </FlexCol>
-  );
-};
+  )
+}

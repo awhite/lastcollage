@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
-import { desktop } from '../util/breakpoints';
+import { desktop } from '../util/breakpoints'
 
 export default styled.h3`
   font-size: 1.25rem;
@@ -10,4 +10,4 @@ export default styled.h3`
   ${desktop`
     font-size: 2rem;
   `}
-`;
+`

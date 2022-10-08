@@ -1,10 +1,10 @@
-import React from 'react';
-import styled from 'styled-components';
-import Copyright from './Copyright';
-import DonateBox from './DonateBox';
-import WhatsNewLink from './WhatsNewLink';
-import Link from './FooterLink';
-import { darkRed } from 'styles';
+import React from 'react'
+import styled from 'styled-components'
+import Copyright from './Copyright'
+import DonateBox from './DonateBox'
+import WhatsNewLink from './WhatsNewLink'
+import Link from './FooterLink'
+import { darkRed } from 'styles'
 
 const FooterContainer = styled.div`
   position: absolute;
@@ -18,7 +18,7 @@ const FooterContainer = styled.div`
   align-items: center;
   background-color: ${darkRed};
   height: 200px;
-`;
+`
 
 const Container = styled.div`
   display: flex;
@@ -27,7 +27,7 @@ const Container = styled.div`
   padding-top: 30px;
   width: 100%;
   max-width: 1200px;
-`;
+`
 
 const Links = styled.div`
   display: inline-flex;
@@ -38,7 +38,7 @@ const Links = styled.div`
   & ${Link} {
     margin-bottom: 0.5em;
   }
-`;
+`
 
 const Grid = styled.div`
   display: grid;
@@ -47,7 +47,7 @@ const Grid = styled.div`
   grid-template-columns: auto 1fr;
   grid-template-rows: auto 1fr 1.5em;
   grid-gap: 1em;
-`;
+`
 
 const Footer = ({ onClickWhatsNew }) => (
   <FooterContainer>
@@ -62,6 +62,6 @@ const Footer = ({ onClickWhatsNew }) => (
       </Grid>
     </Container>
   </FooterContainer>
-);
+)
 
-export default Footer;
+export default Footer

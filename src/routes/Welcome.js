@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 
 import {
   PageTitle,
@@ -11,25 +11,25 @@ import {
   RegenerateLastCollage,
   MaintenanceModeBubble,
   ButtonContainer,
-} from '../components';
-import { validateParams } from '../util';
+} from '../components'
+import { validateParams } from '../util'
 
 const Welcome = ({ isMaintenanceMode }) => {
-  const [lastCollageInfo, setLastCollageInfo] = useState(null);
+  const [lastCollageInfo, setLastCollageInfo] = useState(null)
 
   useEffect(() => {
-    const username = localStorage.getItem('username');
-    let period = localStorage.getItem('period');
-    const start = localStorage.getItem('periodStart');
-    const end = localStorage.getItem('periodEnd');
+    const username = localStorage.getItem('username')
+    let period = localStorage.getItem('period')
+    const start = localStorage.getItem('periodStart')
+    const end = localStorage.getItem('periodEnd')
     if (start) {
-      period = { start, end };
+      period = { start, end }
     }
-    const rowNum = localStorage.getItem('rowNum');
-    const colNum = localStorage.getItem('colNum');
-    const type = localStorage.getItem('type');
-    const showName = localStorage.getItem('showName');
-    const hideMissing = localStorage.getItem('hideMissing');
+    const rowNum = localStorage.getItem('rowNum')
+    const colNum = localStorage.getItem('colNum')
+    const type = localStorage.getItem('type')
+    const showName = localStorage.getItem('showName')
+    const hideMissing = localStorage.getItem('hideMissing')
 
     const params = {
       username,
@@ -39,18 +39,18 @@ const Welcome = ({ isMaintenanceMode }) => {
       type,
       showName,
       hideMissing,
-    };
+    }
 
-    if (!validateParams(params)) return;
+    if (!validateParams(params)) return
 
-    setLastCollageInfo(params);
-  }, []);
+    setLastCollageInfo(params)
+  }, [])
 
-  const history = useHistory();
+  const history = useHistory()
 
   const getStarted = () => {
-    history.push('/username', {});
-  };
+    history.push('/username', {})
+  }
 
   return (
     <>
@@ -59,8 +59,7 @@ const Welcome = ({ isMaintenanceMode }) => {
       </PageTitle>
       <PageContent>
         <MainText>
-          Generate a collage from your{' '}
-          <Link href="https://www.last.fm/">Last.fm</Link> scrobbles
+          Generate a collage from your <Link href="https://www.last.fm/">Last.fm</Link> scrobbles
         </MainText>
         {isMaintenanceMode && <MaintenanceModeBubble />}
         <ButtonContainer>
@@ -69,7 +68,7 @@ const Welcome = ({ isMaintenanceMode }) => {
         {lastCollageInfo && <RegenerateLastCollage info={lastCollageInfo} />}
       </PageContent>
     </>
-  );
-};
+  )
+}
 
-export default Welcome;
+export default Welcome

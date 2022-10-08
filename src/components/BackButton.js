@@ -1,7 +1,11 @@
-import React from 'react';
+import React from 'react'
 
-import Button from './Button';
+import Button from './Button'
 
-const BackButton = ({ className, ...otherProps }) => <Button className={className} outlined {...otherProps}>Back</Button>
+const BackButton = ({ className, ...otherProps }) => (
+  <Button className={className} outlined {...otherProps}>
+    Back
+  </Button>
+)
 
-export default BackButton;
+export default BackButton

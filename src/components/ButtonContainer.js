@@ -1,30 +1,30 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components'
 
-import { desktop } from '../util/breakpoints';
+import { desktop } from '../util/breakpoints'
 
 const colStyles = css`
   flex-direction: column;
 
-  >:not(:last-child) {
+  > :not(:last-child) {
     margin-bottom: 20px;
   }
 
-  >:last-child {
+  > :last-child {
     margin-top: 24px;
   }
-`;
+`
 
 const rowStyles = css`
   flex-direction: row-reverse;
-  >:not(:last-child) {
+  > :not(:last-child) {
     margin-bottom: 0;
     margin-left: 24px;
   }
 
-  >:last-child {
+  > :last-child {
     margin-top: 0;
   }
-`;
+`
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -36,10 +36,10 @@ const ButtonContainer = styled.div`
   ${colStyles}
 
   ${desktop`
-    ${props => props.row && rowStyles}
+    ${(props) => props.row && rowStyles}
     width: inherit;
     align-items: center;
   `}
-`;
+`
 
-export default ButtonContainer;
+export default ButtonContainer
