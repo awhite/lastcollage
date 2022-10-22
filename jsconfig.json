@@ -2,7 +2,7 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "esnext",
-    "baseUrl": "src"
+    "baseUrl": "client-new/src"
   },
   "exclude": ["node_modules"]
 }
